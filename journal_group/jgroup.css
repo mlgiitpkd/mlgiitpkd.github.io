@@ -1,0 +1,66 @@
+h3 {
+	color: #f39c12;
+	font-weight: bold;
+	font-size: 14px;
+	line-height: 18px;
+}
+
+h3 a {
+	color: #f39c12;
+}
+
+.col {margin: 0 50px 50px 50px; float: left; font-size: 1em; 
+    align-content: center; text-align: center; align-items: center; justify-content: center;} 
+	
+
+.col table {
+	border-collapse: collapse;
+	table-layout: fixed;
+}
+
+.col td, th {
+	padding: 0.5em;
+	border: 1px solid #CCC;
+}
+
+.col td a {
+	color: #202020;
+}
+
+.col td a:hover {
+	color: #f39c12;
+}
+.col td a:active {
+	color: #f39c12;
+}
+
+.col  thead, tfoot {
+	background-color: #DDD;
+}
+
+.col tr.rowodd {
+	background-color: #FFF;
+}
+
+.col tr.roweven {
+	background-color: #F2F2F2;
+}
+
+
+/* by EL 2010-10-02 */
+#footer {
+	color: #928B81; 
+	padding: 13px 0 45px 0;
+	clear: both;
+        border-top: 9px solid;
+}
+
+/* by EL 2010-12-04 */
+#footer p {
+        font-size: 12px;
+}
+
+/* by NE 2010-11-15 */
+.narrow {
+	margin-right: 378px;
+}
