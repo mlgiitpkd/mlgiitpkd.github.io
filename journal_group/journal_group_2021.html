@@ -45,12 +45,45 @@ p a:hover{
     color: #f39c12;
 }
 
+        /* Responsive table column widths */
+        table th,
+        table td {
+            padding: 5px;
+            text-align: left;
+        }
 
 body {
 	margin-right: 13px;
 	margin-left: 13px;
 }
+/* Make table full width and move archives below on larger screens */
+@media (min-width: 768px) {
+    .table-container {
+        display: block;
+        width: 100%;
+    }
 
+    .table-container .col {
+        width: 100%;
+    }
+
+    .archives-container {
+        margin-top: 30px;
+        width: 100%;
+    }
+}
+
+/* On smaller screens, stack the table and archives vertically */
+@media (max-width: 767px) {
+    .table-container,
+    .archives-container {
+        width: 100%;
+    }
+
+    .col {
+        width: 100%;
+    }
+}
 </style>
 
 
@@ -364,7 +397,10 @@ body {
                                   
                                       
                                       <div class="col">
-                                          <h3><a href="journal_group_2020.html">2020 Archives</a></h3>
+                                          <h3><a href="journal_group.html">2024 Journal</a></h3>
+                                          <h3><a href="journal_group_2023.html">2023 Archives</a></h3>
+                                          <h3><a href="journal_group_2021.html"style="color: #14A085;">2021 Archives</a></h3>
+					  					<h3><a href="journal_group_2020.html">2020 Archives</a></h3>
                                       </div>
                                  </p></div></div> <!-- /.section -->
                                 </div> <!-- /#wrap -->
