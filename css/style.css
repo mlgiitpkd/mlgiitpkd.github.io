@@ -96,6 +96,7 @@ header .navbar-default{
     background-color: #FFFFFF;
 }
 .navbar-nav > li > a {
+	padding-left: 10px;
     padding-right: 10px;
 }
 @media (max-width: 768px) {
