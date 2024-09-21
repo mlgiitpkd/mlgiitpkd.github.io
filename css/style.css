@@ -95,6 +95,24 @@ header .navbar-collapse  ul.navbar-nav {
 header .navbar-default{
     background-color: #FFFFFF;
 }
+.navbar-nav > li > a {
+    padding-right: 10px;
+}
+@media (max-width: 768px) {
+	/* Limit the size of the logo */
+	.navbar-brand img {
+	  max-width: 250px; 
+	  height: auto;    
+	  position: relative;
+	  z-index: 1;    
+	}
+  
+	/* Adjust the positioning if needed */
+	.navbar-toggler {
+	  z-index: 2;  
+	}
+  }
+  
 
 header .nav li a:hover,
 header .nav li a:focus,
