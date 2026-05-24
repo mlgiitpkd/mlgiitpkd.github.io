@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Journal Club</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <!-- Preserve original site stylesheet links -->
+    <link rel="stylesheet" href="common.css">
+    <link rel="stylesheet" href="jgroup.css">
+    <link href="../css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../css/fancybox/jquery.fancybox.css" rel="stylesheet">
+    <link href="../css/jcarousel.css" rel="stylesheet" />
+    <link href="../css/flexslider.css" rel="stylesheet" />
+    <link href="../js/owl-carousel/owl.carousel.css" rel="stylesheet">
+    <link href="../css/style.css" rel="stylesheet" />
+    <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/animate.min.css" rel="stylesheet">
+    <link href="../css/prettyPhoto.css" rel="stylesheet">
+
+    <style>
+        /* ─── DESIGN TOKENS ─────────────────────────────── */
+        :root {
+            --ink:        #0f1923;
+            --ink-soft:   #3a4a58;
+            --ink-muted:  #7a8fa0;
+            --paper:      #f7f5f0;
+            --paper-warm: #ede9e1;
+            --accent:     #14A085;
+            --accent-dim: #0d7a65;
+            --accent-glow:rgba(20,160,133,.12);
+            --gold:       #c4930a;
+            --rule:       #d8d2c6;
+            --radius:     6px;
+            --shadow-sm:  0 1px 4px rgba(15,25,35,.08);
+            --shadow-md:  0 4px 20px rgba(15,25,35,.10);
+            --shadow-lg:  0 12px 40px rgba(15,25,35,.14);
+        }
+
+        /* ─── RESET / BASE ───────────────────────────────── */
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            background: var(--paper);
+            color: var(--ink);
+            font-family: 'DM Sans', sans-serif;
+            font-size: 15px;
+            line-height: 1.65;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ─── NAVBAR (preserve bootstrap classes; override visuals) ─ */
+        .navbar.navbar-default.navbar-static-top {
+            background: var(--ink) !important;
+            border: none;
+            box-shadow: none;
+            margin-bottom: 0;
+        }
+        .navbar-brand img { filter: brightness(1.1); }
+        .navbar-nav > li > a {
+            color: rgba(255,255,255,.75) !important;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 13px;
+            font-weight: 500;
+            letter-spacing: .06em;
+            text-transform: uppercase;
+            padding: 22px 14px;
+            transition: color .2s;
+        }
+        .navbar-nav > li > a:hover,
+        .navbar-nav > li.active > a { color: var(--accent) !important; }
+        .navbar-nav > li > a[style*="14A085"] { color: var(--accent) !important; }
+
+        /* ─── HERO STRIP ─────────────────────────────────── */
+        #inner-headline {
+            background: linear-gradient(135deg, #0f1923 0%, #1a2e3b 60%, #0d2e28 100%);
+            padding: 56px 0 44px;
+            position: relative;
+            overflow: hidden;
+        }
+        #inner-headline::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: repeating-linear-gradient(
+                -45deg,
+                transparent,
+                transparent 24px,
+                rgba(20,160,133,.04) 24px,
+                rgba(20,160,133,.04) 25px
+            );
+        }
+        #inner-headline .container { position: relative; }
+        #inner-headline .pageTitle {
+            font-family: 'DM Serif Display', serif;
+            font-size: clamp(28px, 4vw, 44px);
+            color: #fff;
+            letter-spacing: -.01em;
+            margin: 0;
+        }
+        #inner-headline .pageTitle::after {
+            content: '';
+            display: block;
+            width: 52px;
+            height: 3px;
+            background: var(--accent);
+            margin-top: 12px;
+            border-radius: 2px;
+        }
+
+        /* ─── WELCOME BAND ───────────────────────────────── */
+        .welcome-band {
+            background: var(--paper-warm);
+            border-bottom: 1px solid var(--rule);
+            padding: 28px 40px;
+            text-align: center;
+        }
+        .welcome-band p {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 15px;
+            font-weight: 400;
+            color: var(--ink-soft);
+            max-width: 760px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        /* ─── LAYOUT ─────────────────────────────────────── */
+        .page-body {
+            max-width: 1180px;
+            margin: 0 auto;
+            padding: 48px 24px 80px;
+            display: grid;
+            grid-template-columns: 1fr 220px;
+            gap: 40px;
+            align-items: start;
+        }
+
+        /* ─── YEAR BLOCK ─────────────────────────────────── */
+        .year-block { min-width: 0; }
+
+        .year-heading {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 20px;
+        }
+        .year-heading .year-label {
+            font-family: 'DM Serif Display', serif;
+            font-size: 32px;
+            color: var(--ink);
+            line-height: 1;
+        }
+        .year-heading .year-label a {
+            color: inherit;
+            text-decoration: none;
+        }
+        .year-heading .talk-count {
+            background: var(--accent-glow);
+            color: var(--accent-dim);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: .04em;
+            padding: 4px 10px;
+            border-radius: 20px;
+            border: 1px solid rgba(20,160,133,.2);
+        }
+
+        /* ─── TABLE ──────────────────────────────────────── */
+        .talk-table-wrap {
+            background: #fff;
+            border: 1px solid var(--rule);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .talk-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13.5px;
+        }
+
+        .talk-table thead tr {
+            background: var(--ink);
+        }
+        .talk-table thead th {
+            color: rgba(255,255,255,.75);
+            font-family: 'DM Sans', sans-serif;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: .09em;
+            text-transform: uppercase;
+            padding: 13px 16px;
+            text-align: left;
+            white-space: nowrap;
+        }
+
+        .talk-table tbody tr {
+            border-bottom: 1px solid var(--rule);
+            transition: background .15s;
+        }
+        .talk-table tbody tr:last-child { border-bottom: none; }
+        .talk-table tbody tr:hover { background: var(--accent-glow); }
+
+        .talk-table td {
+            padding: 14px 16px;
+            vertical-align: top;
+            color: var(--ink-soft);
+            line-height: 1.55;
+        }
+
+        /* Date column */
+        .talk-table td.date-cell {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            color: var(--ink-muted);
+            white-space: nowrap;
+            padding-top: 16px;
+        }
+
+        /* Title column */
+        .talk-table td.title-cell {
+            font-size: 13.5px;
+            font-weight: 500;
+            color: var(--ink);
+            max-width: 280px;
+        }
+
+        /* Venue column */
+        .talk-table td.venue-cell {
+            font-size: 12px;
+            color: var(--ink-muted);
+        }
+
+        /* Speaker column */
+        .talk-table td.speaker-cell {
+            font-weight: 600;
+            color: var(--ink);
+            white-space: nowrap;
+        }
+
+        /* Conf badge */
+        .conf-badge {
+            display: inline-block;
+            background: var(--paper-warm);
+            border: 1px solid var(--rule);
+            border-radius: 4px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            font-weight: 500;
+            padding: 2px 7px;
+            color: var(--ink-soft);
+            white-space: nowrap;
+        }
+        .conf-badge a {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+            margin-left: 4px;
+        }
+        .conf-badge a:hover { color: var(--accent-dim); text-decoration: underline; }
+
+        /* Role pill */
+        .role-pill {
+            display: inline-block;
+            background: rgba(196,147,10,.1);
+            color: #8a6200;
+            font-size: 11px;
+            font-weight: 500;
+            padding: 2px 8px;
+            border-radius: 20px;
+            border: 1px solid rgba(196,147,10,.2);
+        }
+
+        /* ─── SIDEBAR ────────────────────────────────────── */
+        .archives-sidebar {
+            position: sticky;
+            top: 24px;
+        }
+
+        .archives-card {
+            background: #fff;
+            border: 1px solid var(--rule);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .archives-card-header {
+            background: var(--ink);
+            padding: 14px 18px;
+        }
+        .archives-card-header h4 {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: .09em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,.65);
+            margin: 0;
+        }
+
+        .archives-list {
+            list-style: none;
+            padding: 8px 0;
+        }
+        .archives-list li { border-bottom: 1px solid var(--rule); }
+        .archives-list li:last-child { border-bottom: none; }
+        .archives-list li a {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 11px 18px;
+            font-size: 13.5px;
+            font-weight: 500;
+            color: var(--ink-soft);
+            text-decoration: none;
+            transition: background .15s, color .15s;
+        }
+        .archives-list li a:hover {
+            background: var(--accent-glow);
+            color: var(--accent);
+        }
+        .archives-list li a.active {
+            color: var(--accent);
+            font-weight: 600;
+        }
+        .archives-list li a .chevron {
+            font-size: 10px;
+            color: var(--ink-muted);
+        }
+        .archives-list li a:hover .chevron { color: var(--accent); }
+
+        /* ─── SCROLL TO TOP ──────────────────────────────── */
+        .scrollup {
+            position: fixed;
+            bottom: 28px;
+            right: 28px;
+            width: 40px;
+            height: 40px;
+            background: var(--ink);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 16px;
+            text-decoration: none;
+            box-shadow: var(--shadow-md);
+            transition: background .2s, transform .2s;
+        }
+        .scrollup:hover { background: var(--accent); transform: translateY(-2px); }
+
+        /* ─── RESPONSIVE ─────────────────────────────────── */
+        @media (max-width: 900px) {
+            .page-body {
+                grid-template-columns: 1fr;
+            }
+            .archives-sidebar {
+                position: static;
+                order: -1;
+            }
+            .archives-list {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 4px;
+                padding: 12px;
+            }
+            .archives-list li { border: none; }
+            .archives-list li a {
+                background: var(--paper-warm);
+                border: 1px solid var(--rule);
+                border-radius: 6px;
+                padding: 7px 14px;
+                font-size: 13px;
+            }
+            .archives-list li a .chevron { display: none; }
+        }
+
+        @media (max-width: 640px) {
+            .talk-table td, .talk-table th { padding: 10px 10px; }
+            .talk-table td.title-cell { max-width: 180px; }
+            .welcome-band { padding: 20px 16px; }
+        }
+    </style>
+</head>
+
+<body>
+<div id="wrapper">
+
+    <!-- ── HEADER (preserved exactly) ── -->
+    <header>
+        <div class="navbar navbar-default navbar-static-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="../index.html"><img src="../img/logo.png" width="350" height="65" alt="logo"/></a>
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="../index.html">Home</a></li>
+                        <li><a href="../research.html">Projects</a></li>
+                        <li><a href="../people.html">People</a></li>
+                        <li><a href="../publications.html">Publications</a></li>
+                        <li><a href="../talktt.html">Talk Series</a></li>
+                        <li><a href="../journal_group/journal_group.html" style="color: #14A085;">Journal Group</a></li>
+                        <li><a href="../gallery.html">Gallery</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ── HERO ── -->
+    <section id="inner-headline">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h2 class="pageTitle">Past Talks</h2>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── WELCOME ── -->
+    <div class="welcome-band">
+        <p>Welcome to the Machine Learning group at IIT Palakkad. We discuss concepts, techniques and recent advancements in Machine Learning and Artificial Intelligence.</p>
+    </div>
+
+    <!-- ── MAIN CONTENT ── -->
+    <div class="page-body">
+
+        <!-- ── TABLE SECTION ── -->
+        <div class="year-block">
+            <div class="year-heading">
+                <span class="year-label"><a href="#">2026</a></span>
+                <span class="talk-count">12 talks</span>
+            </div>
+
+            <div class="talk-table-wrap">
+                <table class="talk-table">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Title</th>
+                            <th>Venue</th>
+                            <th>Speaker</th>
+                            <th>Role</th>
+                            <th>Location</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        <tr id="N938747853">
+                            <td class="date-cell">Feb 02, 2026</td>
+                            <td class="title-cell">CoSy: Evaluating Textual Explanations of Neurons</td>
+                            <td><span class="conf-badge">NIPS 2024 <a href="https://neurips.cc/virtual/2024/poster/95204" target="_blank">↗</a></span></td>
+                            <td class="speaker-cell">Vishnu B Raj</td>
+                            <td><span class="role-pill">Research Scholar</span></td>
+                            <td class="venue-cell">Room 137, B03 Block, Sahyadri Campus</td>
+                        </tr>
+
+                        <tr id="N938747854">
+                            <td class="date-cell">Feb 09, 2026</td>
+                            <td class="title-cell">KAN-AD: Time Series Anomaly Detection with Kolmogorov–Arnold Networks</td>
+                            <td><span class="conf-badge">ICML 2025 <a href="https://arxiv.org/pdf/2411.00278" target="_blank">↗</a></span></td>
+                            <td class="speaker-cell">Vinitha M Rajan</td>
+                            <td><span class="role-pill">Research Scholar</span></td>
+                            <td class="venue-cell">Room 137, B03 Block, Sahyadri Campus</td>
+                        </tr>
+
+                        <tr id="N938747855">
+                            <td class="date-cell">Feb 16, 2026</td>
+                            <td class="title-cell">Mean Flows for One Step Generative Modelling</td>
+                            <td><span class="conf-badge">NIPS 2025 <a href="https://openreview.net/pdf?id=uWj4s7rMnR" target="_blank">↗</a></span></td>
+                            <td class="speaker-cell">Thomas John</td>
+                            <td><span class="role-pill">Research Scholar</span></td>
+                            <td class="venue-cell">Room 137, B03 Block, Sahyadri Campus</td>
+                        </tr>
+
+                        <tr id="N938747856">
+                            <td class="date-cell">Feb 23, 2026</td>
+                            <td class="title-cell">Blockwise Flow Matching: Improving Flow Matching Models for Efficient High-Quality Generation</td>
+                            <td><span class="conf-badge">NIPS 2025 <a href="https://arxiv.org/pdf/2510.21167" target="_blank">↗</a></span></td>
+                            <td class="speaker-cell">Jotipriya Das</td>
+                            <td><span class="role-pill">Research Scholar</span></td>
+                            <td class="venue-cell">Room 137, B03 Block, Sahyadri Campus</td>
+                        </tr>
+
+                        <tr id="N938747857">
+                            <td class="date-cell">Mar 02, 2026</td>
+                            <td class="title-cell">Flow Matching Neural Processes</td>
+                            <td><span class="conf-badge">NIPS 2025 <a href="https://openreview.net/pdf?id=R8n2h7hzqS" target="_blank">↗</a></span></td>
+                            <td class="speaker-cell">Eva Cherian</td>
+                            <td><span class="role-pill">Research Scholar</span></td>
+                            <td class="venue-cell">Room 137, B03 Block, Sahyadri Campus</td>
+                        </tr>
+
+                        <tr id="N938747858">
+                            <td class="date-cell">Mar 09, 2026</td>
+                            <td class="title-cell">Straight-Line Diffusion Model for Efficient 3D Molecular Generation</td>
+                            <td><span class="conf-badge">NIPS 2025 <a href="https://openreview.net/pdf/c40b5676c1fed73f42c1e750a2933ce421ea342f.pdf" target="_blank">↗</a></span></td>
+                            <td class="speaker-cell">Ankit S</td>
+                            <td><span class="role-pill">Research Scholar</span></td>
+                            <td class="venue-cell">Room 137, B03 Block, Sahyadri Campus</td>
+                        </tr>
+
+                        <tr id="N938747859">
+                            <td class="date-cell">Mar 16, 2026</td>
+                            <td class="title-cell">Neural Cover Selection for Image Steganography</td>
+                            <td><span class="conf-badge">NIPS 2024 <a href="https://proceedings.neurips.cc/paper_files/paper/2024/file/82eac7050fb44b662062ac64aa6637c3-Paper-Conference.pdf" target="_blank">↗</a></span></td>
+                            <td class="speaker-cell">Vishnu B Raj</td>
+                            <td><span class="role-pill">Research Scholar</span></td>
+                            <td class="venue-cell">Room 137, B03 Block, Sahyadri Campus</td>
+                        </tr>
+
+                        <tr id="N938747860">
+                            <td class="date-cell">Mar 23, 2026</td>
+                            <td class="title-cell">ProtoTS: Learning Hierarchical Prototypes for Explainable Time Series Forecasting</td>
+                            <td><span class="conf-badge">ICLR 2026 <a href="https://openreview.net/pdf?id=IbcdVwzLrp" target="_blank">↗</a></span></td>
+                            <td class="speaker-cell">Vinitha M Rajan</td>
+                            <td><span class="role-pill">Research Scholar</span></td>
+                            <td class="venue-cell">Room 137, B03 Block, Sahyadri Campus</td>
+                        </tr>
+
+                        <tr id="N938747861">
+                            <td class="date-cell">Mar 30, 2026</td>
+                            <td class="title-cell">On Feature Learning in the Presence of Spurious Correlations</td>
+                            <td><span class="conf-badge">NIPS 2022 <a href="https://proceedings.neurips.cc/paper_files/paper/2022/file/fb64a552feda3d981dbe43527a80a07e-Paper-Conference.pdf" target="_blank">↗</a></span></td>
+                            <td class="speaker-cell">Thomas John</td>
+                            <td><span class="role-pill">Research Scholar</span></td>
+                            <td class="venue-cell">Room 137, B03 Block, Sahyadri Campus</td>
+                        </tr>
+
+                        <tr id="N938747862">
+                            <td class="date-cell">Apr 06, 2026</td>
+                            <td class="title-cell">DeFoG: Discrete Flow Matching for Graph Generation</td>
+                            <td><span class="conf-badge">ICML 2025 <a href="https://openreview.net/pdf?id=KPRIwWhqAZ" target="_blank">↗</a></span></td>
+                            <td class="speaker-cell">Jotipriya Das</td>
+                            <td><span class="role-pill">Research Scholar</span></td>
+                            <td class="venue-cell">Room 137, B03 Block, Sahyadri Campus</td>
+                        </tr>
+
+                        <tr id="N938747863">
+                            <td class="date-cell">Apr 20, 2026</td>
+                            <td class="title-cell">Score-of-Mixture Training: One-Step Generative Model Training Made Simple via Score Estimation of Mixture Distributions</td>
+                            <td><span class="conf-badge">ICML 2025 <a href="https://openreview.net/forum?id=zk5k2NQcEA" target="_blank">↗</a></span></td>
+                            <td class="speaker-cell">Eva Cherian</td>
+                            <td><span class="role-pill">Research Scholar</span></td>
+                            <td class="venue-cell">Room 137, B03 Block, Sahyadri Campus</td>
+                        </tr>
+
+                        <tr id="N938747864">
+                            <td class="date-cell">Apr 27, 2026</td>
+                            <td class="title-cell">Training-free Multi-objective Diffusion Model for 3D Molecule Generation</td>
+                            <td><span class="conf-badge">ICLR 2024 <a href="https://openreview.net/pdf?id=X41c4uB4k0" target="_blank">↗</a></span></td>
+                            <td class="speaker-cell">Ankit S</td>
+                            <td><span class="role-pill">Research Scholar</span></td>
+                            <td class="venue-cell">Room 137, B03 Block, Sahyadri Campus</td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- ── ARCHIVES SIDEBAR ── -->
+        <aside class="archives-sidebar">
+            <div class="archives-card">
+                <div class="archives-card-header">
+                    <h4>Archives</h4>
+                </div>
+                <ul class="archives-list">
+                    <li><a href="journal_group.html" class="active">2026 <span class="chevron">▶</span></a></li>
+                    <li><a href="journal_group_2025.html">2025 <span class="chevron">▶</span></a></li>
+                    <li><a href="journal_group_2024.html">2024 <span class="chevron">▶</span></a></li>
+                    <li><a href="journal_group_2023.html">2023 <span class="chevron">▶</span></a></li>
+                    <li><a href="journal_group_2021.html">2021 <span class="chevron">▶</span></a></li>
+                    <li><a href="journal_group_2020.html">2020 <span class="chevron">▶</span></a></li>
+                </ul>
+            </div>
+        </aside>
+
+    </div><!-- /.page-body -->
+
+</div><!-- /#wrapper -->
+
+<a href="#" class="scrollup"><i class="fa fa-angle-up"></i></a>
+
+<!-- Original scripts preserved -->
+<script src="../js/jquery.js"></script>
+<script src="../js/jquery.easing.1.3.js"></script>
+<script src="../js/bootstrap.min.js"></script>
+<script src="../js/jquery.fancybox.pack.js"></script>
+<script src="../js/jquery.fancybox-media.js"></script>
+<script src="../js/portfolio/jquery.quicksand.js"></script>
+<script src="../js/portfolio/setting.js"></script>
+<script src="../js/jquery.flexslider.js"></script>
+<script src="../js/animate.js"></script>
+
+</body>
+</html>
