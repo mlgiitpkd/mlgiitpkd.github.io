@@ -4,96 +4,320 @@
 <head>
     <title>Journal Club</title>
     <meta charset="utf-8">
-    <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="common.css">
-<link rel="stylesheet" href="jgroup.css">
-<link href="../css/bootstrap.min.css" rel="stylesheet" />
-<link href="../css/fancybox/jquery.fancybox.css" rel="stylesheet">
-<link href="../css/jcarousel.css" rel="stylesheet" />
-<link href="../css/flexslider.css" rel="stylesheet" />
-<link href="../js/owl-carousel/owl.carousel.css" rel="stylesheet">
-<link href="../css/style.css" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
-<link href="../css/font-awesome.min.css" rel="stylesheet">
-<link href="../css/animate.min.css" rel="stylesheet"> 
-<link href="../css/prettyPhoto.css" rel="stylesheet">
+    <!-- Preserve original site stylesheet links -->
+    <link rel="stylesheet" href="common.css">
+    <link rel="stylesheet" href="jgroup.css">
+    <link href="../css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../css/fancybox/jquery.fancybox.css" rel="stylesheet">
+    <link href="../css/jcarousel.css" rel="stylesheet" />
+    <link href="../css/flexslider.css" rel="stylesheet" />
+    <link href="../js/owl-carousel/owl.carousel.css" rel="stylesheet">
+    <link href="../css/style.css" rel="stylesheet" />
+    <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/animate.min.css" rel="stylesheet">
+    <link href="../css/prettyPhoto.css" rel="stylesheet">
 
-<!--
-<link href="css/style1.css" rel="stylesheet" type="text/css"> 
-<link href="css/font-awesome1.css" rel="stylesheet" type="text/css"> 
-<link href="css/animate1.css" rel="stylesheet" type="text/css">
--->
-
-<style>
-     /* Create two columns/boxes that floats next to each other */
-     navl {
-            float: left;
-            width: 40%;
-            padding: 5%;
+    <style>
+        /* ─── DESIGN TOKENS ─────────────────────────────── */
+        :root {
+            --ink:        #0f1923;
+            --ink-soft:   #3a4a58;
+            --ink-muted:  #7a8fa0;
+            --paper:      #f7f5f0;
+            --paper-warm: #ede9e1;
+            --accent:     #14A085;
+            --accent-dim: #0d7a65;
+            --accent-glow:rgba(20,160,133,.12);
+            --gold:       #c4930a;
+            --rule:       #d8d2c6;
+            --shadow-sm:  0 1px 4px rgba(15,25,35,.08);
+            --shadow-md:  0 4px 20px rgba(15,25,35,.10);
         }
-p {
-    font-size: 18px;
-    font-weight: bold;
-    text-align: center;
-    
-}
-p a{
-  font-size: 20px;
-}
-p a:hover{
-    color: #f39c12;
-}
-        /* Responsive table column widths */
-        table th,
-        table td {
-            padding: 5px;
+
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            background: var(--paper);
+            color: var(--ink);
+            font-family: 'DM Sans', sans-serif;
+            font-size: 15px;
+            line-height: 1.65;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ─── NAVBAR ─────────────────────────────────────── */
+        .navbar.navbar-default.navbar-static-top {
+            background: var(--ink) !important;
+            border: none;
+            box-shadow: none;
+            margin-bottom: 0;
+        }
+        .navbar-brand img { filter: brightness(1.1); }
+        .navbar-nav > li > a {
+            color: rgba(255,255,255,.75) !important;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 13px;
+            font-weight: 500;
+            letter-spacing: .06em;
+            text-transform: uppercase;
+            padding: 22px 14px;
+            transition: color .2s;
+        }
+        .navbar-nav > li > a:hover,
+        .navbar-nav > li.active > a { color: var(--accent) !important; }
+        .navbar-nav > li > a[style*="14A085"] { color: var(--accent) !important; }
+
+        /* ─── WELCOME BAND ───────────────────────────────── */
+        .welcome-band {
+            background: var(--paper-warm);
+            border-bottom: 1px solid var(--rule);
+            padding: 28px 40px;
+            text-align: center;
+        }
+        .welcome-band p {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 15px;
+            font-weight: 400;
+            color: var(--ink-soft);
+            max-width: 760px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        /* ─── LAYOUT ─────────────────────────────────────── */
+        .page-body {
+            max-width: 1500px;
+            margin: 0 auto;
+            padding: 48px 24px 80px;
+            display: grid;
+            grid-template-columns: 160px 1fr;
+            gap: 32px;
+            align-items: start;
+        }
+
+        /* ─── YEAR BLOCK ─────────────────────────────────── */
+        .year-block { min-width: 0; }
+
+        .year-heading {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 20px;
+        }
+        .year-heading .year-label {
+            font-family: 'DM Serif Display', serif;
+            font-size: 32px;
+            color: var(--ink);
+            line-height: 1;
+        }
+        .year-heading .year-label a {
+            color: inherit;
+            text-decoration: none;
+        }
+        .year-heading .talk-count {
+            background: var(--accent-glow);
+            color: var(--accent-dim);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: .04em;
+            padding: 4px 10px;
+            border-radius: 20px;
+            border: 1px solid rgba(20,160,133,.2);
+        }
+
+        /* ─── TABLE ──────────────────────────────────────── */
+        .talk-table-wrap {
+            background: #fff;
+            border: 1px solid var(--rule);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .talk-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13.5px;
+        }
+
+        .talk-table thead tr { background: var(--ink); }
+        .talk-table thead th {
+            color: rgba(255,255,255,.75);
+            font-family: 'DM Sans', sans-serif;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: .09em;
+            text-transform: uppercase;
+            padding: 13px 16px;
             text-align: left;
+            white-space: nowrap;
         }
 
+        .talk-table tbody tr {
+            border-bottom: 1px solid var(--rule);
+            transition: background .15s;
+        }
+        .talk-table tbody tr:last-child { border-bottom: none; }
+        .talk-table tbody tr:hover { background: var(--accent-glow); }
 
- /* Make table full width and move archives below on larger screens */
- @media (min-width: 768px) {
-    .table-container {
-        display: block;
-        width: 100%;
-    }
+        .talk-table td {
+            padding: 14px 16px;
+            vertical-align: top;
+            color: var(--ink-soft);
+            line-height: 1.55;
+        }
 
-    .table-container .col {
-        width: 100%;
-    }
+        .talk-table td.date-cell {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            color: var(--ink-muted);
+            white-space: nowrap;
+            padding-top: 16px;
+        }
 
-    .archives-container {
-        margin-top: 30px;
-        width: 100%;
-    }
-}
+        .talk-table td.title-cell {
+            font-size: 13.5px;
+            font-weight: 500;
+            color: var(--ink);
+            max-width: 280px;
+        }
 
-/* On smaller screens, stack the table and archives vertically */
-@media (max-width: 767px) {
-    .table-container,
-    .archives-container {
-        width: 100%;
-    }
+        .talk-table td.venue-cell {
+            font-size: 12px;
+            color: var(--ink-muted);
+        }
 
-    .col {
-        width: 100%;
-    }
-}
+        .talk-table td.speaker-cell {
+            font-weight: 600;
+            color: var(--ink);
+            white-space: nowrap;
+        }
 
+        .conf-badge {
+            display: inline-block;
+            background: var(--paper-warm);
+            border: 1px solid var(--rule);
+            border-radius: 4px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            font-weight: 500;
+            padding: 2px 7px;
+            color: var(--ink-soft);
+            white-space: nowrap;
+        }
+        .conf-badge a {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+            margin-left: 4px;
+        }
+        .conf-badge a:hover { color: var(--accent-dim); text-decoration: underline; }
 
-</style>
+        .role-pill {
+            display: inline-block;
+            background: rgba(196,147,10,.1);
+            color: #8a6200;
+            font-size: 11px;
+            font-weight: 500;
+            padding: 2px 8px;
+            border-radius: 20px;
+            border: 1px solid rgba(196,147,10,.2);
+            white-space: nowrap;
+        }
 
+        /* ─── SIDEBAR ────────────────────────────────────── */
+        .archives-sidebar { position: sticky; top: 24px; }
 
+        .archives-card {
+            background: #fff;
+            border: 1px solid var(--rule);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .archives-card-header {
+            background: var(--ink);
+            padding: 14px 18px;
+        }
+        .archives-card-header h4 {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: .09em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,.65);
+            margin: 0;
+        }
+
+        .archives-list { list-style: none; padding: 8px 0; }
+        .archives-list li { border-bottom: 1px solid var(--rule); }
+        .archives-list li:last-child { border-bottom: none; }
+        .archives-list li a {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 11px 18px;
+            font-size: 13.5px;
+            font-weight: 500;
+            color: var(--ink-soft);
+            text-decoration: none;
+            transition: background .15s, color .15s;
+        }
+        .archives-list li a:hover { background: var(--accent-glow); color: var(--accent); }
+        .archives-list li a.active { color: var(--accent); font-weight: 600; }
+        .archives-list li a .chevron { font-size: 10px; color: var(--ink-muted); }
+        .archives-list li a:hover .chevron { color: var(--accent); }
+
+        /* ─── SCROLL TO TOP ──────────────────────────────── */
+        .scrollup {
+            position: fixed;
+            bottom: 28px; right: 28px;
+            width: 40px; height: 40px;
+            background: var(--ink);
+            border-radius: 8px;
+            display: flex; align-items: center; justify-content: center;
+            color: #fff; font-size: 16px;
+            text-decoration: none;
+            box-shadow: var(--shadow-md);
+            transition: background .2s, transform .2s;
+        }
+        .scrollup:hover { background: var(--accent); transform: translateY(-2px); }
+
+        /* ─── RESPONSIVE ─────────────────────────────────── */
+        @media (max-width: 900px) {
+            .page-body { grid-template-columns: 1fr; }
+            .archives-sidebar { position: static; order: -1; }
+            .archives-list { display: flex; flex-wrap: wrap; gap: 4px; padding: 12px; }
+            .archives-list li { border: none; }
+            .archives-list li a {
+                background: var(--paper-warm);
+                border: 1px solid var(--rule);
+                border-radius: 6px;
+                padding: 7px 14px; font-size: 13px;
+            }
+            .archives-list li a .chevron { display: none; }
+        }
+
+        @media (max-width: 640px) {
+            .talk-table td, .talk-table th { padding: 10px; }
+            .talk-table td.title-cell { max-width: 180px; }
+            .welcome-band { padding: 20px 16px; }
+        }
+    </style>
 </head>
 
- 
-
 <body>
-
 <div id="wrapper">
 
-		<header>
+    <!-- ── HEADER ── -->
+    <header>
         <div class="navbar navbar-default navbar-static-top">
             <div class="container">
                 <div class="navbar-header">
@@ -102,362 +326,287 @@ p a:hover{
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                  <a class="navbar-brand" href="../index.html"><img src="../img/logo.png" width="350" height="65" alt="logo"/></a>
+                    <a class="navbar-brand" href="../index.html"><img src="../img/logo.png" width="350" height="65" alt="logo"/></a>
                 </div>
-                <div class="navbar-collapse collapse ">
+                <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                        <li class="active"><a href="../index.html">Home</a></li> 
-						<li><a href="../research.html">Projects</a></li>
-						<li><a href="../people.html">People</a></li>
-                        
-                        <!-- <li><a href="#">Publications</a></li> -->
+                        <li><a href="../index.html">Home</a></li>
+                        <li><a href="../research.html">Projects</a></li>
+                        <li><a href="../people.html">People</a></li>
                         <li><a href="../talktt.html">Talk Series</a></li>
-                        <li><a href="../journal_group/journal_group.html"style="color: #14A085;" >Journal Group</a></li>
-                        <li><a href="../gallery.html">Gallery </a></li>
+                        <li class="active"><a href="../journal_group/journal_group.html" style="color: #14A085;">Journal Group</a></li>
+                        <li><a href="../gallery.html">Gallery</a></li>
                     </ul>
                 </div>
             </div>
         </div>
-	</header><!-- end header -->
+    </header>
 
-	<section id="inner-headline">
-	<div class="container">
-		<div class="row">
-			<div class="col-lg-12">
-				<h2 class="pageTitle">Past talks: </h2>
-			</div>
-		</div>
-	</div>
-	</section>
+    <!-- ── WELCOME ── -->
+    <div class="welcome-band">
+        <p>Welcome to the Machine Learning group at IIT Palakkad. We discuss concepts, techniques and recent advancements in Machine Learning and Artificial Intelligence.</p>
+    </div>
 
+    <!-- ── MAIN CONTENT ── -->
+    <div class="page-body">
 
-   
+        <!-- ── ARCHIVES SIDEBAR ── -->
+        <aside class="archives-sidebar">
+            <div class="archives-card">
+                <div class="archives-card-header">
+                    <h4>Archives</h4>
+                </div>
+                <ul class="archives-list">
+                    <li><a href="journal_group.html">2026 <span class="chevron">▶</span></a></li>
+                    <li><a href="journal_group_2025.html">2025 <span class="chevron">▶</span></a></li>
+                    <li><a href="journal_group_2024.html" class="active">2024 <span class="chevron">▶</span></a></li>
+                    <li><a href="journal_group_2023.html">2023 <span class="chevron">▶</span></a></li>
+                    <li><a href="journal_group_2021.html">2021 <span class="chevron">▶</span></a></li>
+                    <li><a href="journal_group_2020.html">2020 <span class="chevron">▶</span></a></li>
+                </ul>
+            </div>
+        </aside>
 
-           <section>
-                <h2 style="font-size: 15px;font-weight: 500;text-align: center;
-                margin-left: 100px; margin-right: 100px; margin-top: 20px;">
-                    Welcome to the Machine Learning group at IIT Palakkad. We discuss concepts, techniques and 
-                    recent advancements in Machine Learning and Artificial Intelligence. <!--To get added to the mailing list, 
-                    please send an email to mlgiitpkd@googlegroups.com.--> </h2>                  
+        <!-- ── TABLE SECTION ── -->
+        <div class="year-block">
+            <div class="year-heading">
+                <span class="year-label"><a href="#">2024</a></span>
+                <span class="talk-count">22 talks</span>
+            </div>
 
-		    <!--
-                    <div class="col">
-                        <h3><a href="#">Upcoming talks:</a></h3>
-                            <table class="sortable resizable editable">
-                                <thead>
-                                    <tr>	 <th id="creation-date">Date</th>
-                                         <th id="cost">Title</th>
-                                         <th id="status">JOURNAL/CONFERENCE</th>
-                                          <th id="status">Speaker</th>
-                                          <th id="author">Speaker Info</th>
-                                         <th id="author">Venue</th>
-                                    </tr>	  
-                                </thead>
-                                <tfoot>
-                                </tfoot>
-                                <tbody>
-                                        <tr id="N938747839">
-                                        <td>Sep 13, 2021</td>
-                                        <td> Benchmarking Deep Learning Interpretability in Time Series Predictions [<a href="https://proceedings.neurips.cc/paper/2020/file/47a3893cc405396a5c30d91320572d6d-Paper.pdf" target="_blank">pdf</a>]<br></td>
-                                        <td>NIPS 2020</td>
-                                        <td>Abilasha</td>
-                                        <td>Research Scholar</td>
-                                        <td>Online Presentation via Google Meet </td>
-                                        </tr></tbody></table></div>
-			-->
+            <div class="talk-table-wrap">
+                <table class="talk-table">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Title</th>
+                            <th>Venue</th>
+                            <th>Speaker</th>
+                            <th>Role</th>
+                            <th>Location</th>
+                        </tr>
+                    </thead>
+                    <tbody>
 
-                    
-                    <div class="col">
-                        <h3><a href="#">2024</a></h3>
-                            <table class="sortable resizable editable">
-                                <thead>
-                                        <tr>
-                                        <th id="creation-date">Date</th>
-                                        <th id="cost">Title</th>
-                                        <th id="status">JOURNAL/CONFERENCE</th>
-                                        <th id="status">Speaker</th>
-                                        <th id="author">Speaker Info</th>
-                                        <th id="author">Venue</th>
-                                        </tr>
-                                </thead>
-                                <tfoot>
-                                </tfoot>
-                                <tbody> 
-				     	
-									<tr id="N938747865">
-										<td>Feb 12,<br>2024</td>
-										<td>Fully Attentional Networks with Self-emerging Token Labeling <br></td>
-										<td>ICCV 2023 [<a href="https://openaccess.thecvf.com/content/ICCV2023/html/Zhao_Fully_Attentional_Networks_with_Self-emerging_Token_Labeling_ICCV_2023_paper.html" target="_blank">Reference</a>]<br></td>
-										<td>Thomas John</td>
-										<td>Research Scholar</td>
-										<td>Samgatha 307</td>
-									</tr> 
-				     	
-									<tr id="N938747866">
-										<td>Feb 19,<br>2024</td>
-										<td>Coordinate attention for efficient mobile network design<br></td>
-										<td>CVPR 2021 [<a href="https://openaccess.thecvf.com/content/CVPR2021/html/Hou_Coordinate_Attention_for_Efficient_Mobile_Network_Design_CVPR_2021_paper.html" target="_blank">Reference</a>]<br></td>
-										<td>Siddhant Shatapathy</td>
-										<td>M.Tech Data Science</td>
-										<td>Samgatha 307</td>
-									</tr> 
-				     	
-									<tr id="N938747867">
-										<td>Feb 26,<br>2024</td>
-										<td>DPSUR: Accelerating Differentially Private Stochastic Gradient Descent Using Selective Update and Release<br></td>
-										<td>VLDB 2024 [<a href="https://arxiv.org/abs/2311.14056" target="_blank">Reference</a>]<br></td>
-										<td>Arghyadeep Ghosh</td>
-										<td>M.Tech Data Science</td>
-										<td>Samgatha 307</td>
-									</tr> 
-				     	
-									<tr id="N938747868">
-										<td>March 4,<br>2024</td>
-										<td>BioNet: A Biologically-Inspired Network for Face Recognition<br></td>
-										<td>CVPR 2023 [<a href="https://openaccess.thecvf.com/content/CVPR2023/html/Li_BioNet_A_Biologically-Inspired_Network_for_Face_Recognition_CVPR_2023_paper.html" target="_blank">Reference</a>]<br></td>
-										<td>Sam Narayana Subudhi</td>
-										<td>M.Tech Data Science</td>
-										<td>Samgatha 307</td>
-									</tr> 
-				     	
-									<tr id="N938747869">
-										<td>March 18,<br>2024</td>
-										<td>A talk about various convolutions in recent times<br></td>
-										<td>--</td>
-										<td>Dr. Mrinal Kanti Das</td>
-										<td>Asst. Professor</td>
-										<td>Samgatha 307</td>
-									</tr> 
-				     	
-									<tr id="N938747870">
-										<td>March 25,<br>2024</td>
-										<td>FRESCO: Spatial-Temporal Correspondence for Zero-Shot Video Translation<br></td>
-										<td>CVPR 2024 [<a href="https://arxiv.org/pdf/2403.12962v1" target="_blank">Reference</a>]<br></td>
-										<td>Souvik Mallick</td>
-										<td>M.Tech Data Science</td>
-										<td>Samgatha 307</td>
-									</tr> 
-				     	
-									<tr id="N938747871">
-										<td>April 8,<br>2024</td>
-										<td>Describing Differences in Image Sets with Natural Language<br></td>
-										<td>CVPR 2024 [<a href="https://openaccess.thecvf.com/content/CVPR2024/papers/Dunlap_Describing_Differences_in_Image_Sets_with_Natural_Language_CVPR_2024_paper.pdf" target="_blank">Reference</a>]<br></td>
-										<td>Chandan Kumar</td>
-										<td>M.Tech Data Science</td>
-										<td>Samgatha 307</td>
-									</tr> 
-				     	
-									<tr id="N938747872">
-										<td>April 15,<br>2024</td>
-										<td>Pocket2Mol: Efficient Molecular Sampling Based on 3D Protein Pockets<br></td>
-										<td>NIPS 2023 [<a href="https://arxiv.org/pdf/2205.07249" target="_blank">Reference</a>]<br></td>
-										<td>Nitesh Singh</td>
-										<td>M.Tech Data Science</td>
-										<td>Samgatha 307</td>
-									</tr>  
-				     	
-									<tr id="N938747873">
-										<td>April 22,<br>2024</td>
-										<td>SAME: Uncovering GNN Black Box with Structure-aware Shapley-based Multipiece Explanations<br></td>
-										<td>NIPS 2023 [<a href="https://proceedings.neurips.cc/paper_files/paper/2023/hash/14cdc9013d80338bf81483a7736ea05c-Abstract-Conference.html" target="_blank">Reference</a>]<br></td>
-										<td>Dr. Sahely Bhadra</td>
-										<td>Asst. Professor</td>
-										<td>Samgatha 307</td>
-									</tr>
-								  	
-									<tr id="N938747853">
-										<td>July 8,<br>2024</td>
-										<td>Detecting Multivariate Time Series Anomalies with Zero Known Label<br></td>
-										<td>AAAI 2023 [<a href="https://ojs.aaai.org/index.php/AAAI/article/view/25623" target="_blank">Reference</a>]<br></td>
-										<td>Vinitha M Rajan</td>
-										<td>Research Scholar</td>
-										<td>Meeting room 1 in D03 <br> (Dr. A. P. J. Abdul Kalam Block)</td>
-									</tr>
-									
-									<tr id="N938747854">
-										<td>July 15,<br>2024</td>
-										<td>Glow: Generative Flow with Invertible 1×1 Convolutions<br></td>
-										<td>AAAI 2018 [<a href="https://arxiv.org/pdf/1807.03039" target="_blank">Reference</a>]<br></td>
-										<td>Sivani E</td>
-										<td>M.Tech Data Science</td>
-										<td>Meeting room 1 <br> (Dr. A.P.J. Abdul Kalam Block)</td>
-									</tr>
-									
-									<tr id="N938747855">
-										<td>July 22,<br>2024</td>
-										<td>Diffusion model<br></td>
-										<td>Presentation on Diffusion Models<br></td>
-										<td>Dr. Mrinal Kanti Das</td>
-										<td>Asst. Professor</td>
-										<td>Meeting room 1 <br> (Dr. A.P.J. Abdul Kalam Block)</td>
-									</tr>
-									
-									<tr id="N938747856">
-										<td>July 29,<br>2024</td>
-										<td>Scalable diffusion models with transformers<br></td>
-										<td>ICCV 23 [<a href="https://openaccess.thecvf.com/content/ICCV2023/html/Peebles_Scalable_Diffusion_Models_with_Transformers_ICCV_2023_paper.html" target="_blank">Reference</a>]<br></td>
-										<td>Thomas John</td>
-										<td>Research Scholar</td>
-										<td>Meeting room 1 <br> (Dr. A.P.J. Abdul Kalam Block)</td>
-									</tr>
-									
-									<tr id="N938747857">
-										<td>Aug 5,<br>2024</td>
-										<td>Directional diffusion models for graph representation learning<br></td>
-										<td>NeurIPS 2024 [<a href="https://proceedings.neurips.cc/paper_files/paper/2023/file/6751ee6546b31ceb7d4ee12276b9f4d9-Paper-Conference.pdf" target="_blank">Reference</a>]<br></td>
-										<td>Ankit S</td>
-										<td>Research Scholar</td>
-										<td>Meeting room 1 <br> (Dr. A.P.J. Abdul Kalam Block)</td>
-									</tr>
-									
-									<tr id="N938747858">
-										<td>Aug 12,<br>2024</td>
-										<td>Interpretable Diffusion Via Information Decomposition<br></td>
-										<td>ICLR 2024 [<a href="https://arxiv.org/pdf/2310.07972" target="_blank">Reference</a>]<br></td>
-										<td>Vishnu B Raj</td>
-										<td>Research Scholar</td>
-										<td>Meeting room 1 <br> (Dr. A.P.J. Abdul Kalam Block)</td>
-									</tr>
-									
-									<tr id="N938747859">
-										<td>Aug 19,<br>2024</td>
-										<td>Training Normalizing Flows from Dependent Data<br></td>
-										<td>PMLR 2023 [<a href="https://proceedings.mlr.press/v202/kirchler23a/kirchler23a.pdf" target="_blank">Reference</a>]<br></td>
-										<td>Eva Cherian</td>
-										<td>Research Scholar</td>
-										<td>Large Conference Room <br> (ICSR, Nila)</td>
-									</tr>
-									
+                        <tr id="N938747865">
+                            <td class="date-cell">Feb 12, 2024</td>
+                            <td class="title-cell">Fully Attentional Networks with Self-emerging Token Labeling</td>
+                            <td><span class="conf-badge">ICCV 2023 <a href="https://openaccess.thecvf.com/content/ICCV2023/html/Zhao_Fully_Attentional_Networks_with_Self-emerging_Token_Labeling_ICCV_2023_paper.html" target="_blank">↗</a></span></td>
+                            <td class="speaker-cell">Thomas John</td>
+                            <td><span class="role-pill">Research Scholar</span></td>
+                            <td class="venue-cell">Samgatha 307</td>
+                        </tr>
 
+                        <tr id="N938747866">
+                            <td class="date-cell">Feb 19, 2024</td>
+                            <td class="title-cell">Coordinate Attention for Efficient Mobile Network Design</td>
+                            <td><span class="conf-badge">CVPR 2021 <a href="https://openaccess.thecvf.com/content/CVPR2021/html/Hou_Coordinate_Attention_for_Efficient_Mobile_Network_Design_CVPR_2021_paper.html" target="_blank">↗</a></span></td>
+                            <td class="speaker-cell">Siddhant Shatapathy</td>
+                            <td><span class="role-pill">M.Tech Data Science</span></td>
+                            <td class="venue-cell">Samgatha 307</td>
+                        </tr>
 
+                        <tr id="N938747867">
+                            <td class="date-cell">Feb 26, 2024</td>
+                            <td class="title-cell">DPSUR: Accelerating Differentially Private Stochastic Gradient Descent Using Selective Update and Release</td>
+                            <td><span class="conf-badge">VLDB 2024 <a href="https://arxiv.org/abs/2311.14056" target="_blank">↗</a></span></td>
+                            <td class="speaker-cell">Arghyadeep Ghosh</td>
+                            <td><span class="role-pill">M.Tech Data Science</span></td>
+                            <td class="venue-cell">Samgatha 307</td>
+                        </tr>
 
-                                                                        <tr id="N938747860">
-                                        <td>Sep 30,<br>2024</td>
-                                        <td>Bandit algorithms (Median Elimination, Thomson sampling)<br></td>
-                                        <td>Reinforcement Learning Lecture Series - 1 [<a href="https://onlinecourses.nptel.ac.in/noc19_cs55/preview" target="_blank">Reference</a>]<br></td>
-                                        <td>Ankit S</td>
-                                        <td>Research Scholar</td>
-                                        <td>Large Conference Room <br> (ICSR, Nila)</td>
-                                    </tr>
+                        <tr id="N938747868">
+                            <td class="date-cell">Mar 04, 2024</td>
+                            <td class="title-cell">BioNet: A Biologically-Inspired Network for Face Recognition</td>
+                            <td><span class="conf-badge">CVPR 2023 <a href="https://openaccess.thecvf.com/content/CVPR2023/html/Li_BioNet_A_Biologically-Inspired_Network_for_Face_Recognition_CVPR_2023_paper.html" target="_blank">↗</a></span></td>
+                            <td class="speaker-cell">Sam Narayana Subudhi</td>
+                            <td><span class="role-pill">M.Tech Data Science</span></td>
+                            <td class="venue-cell">Samgatha 307</td>
+                        </tr>
 
+                        <tr id="N938747869">
+                            <td class="date-cell">Mar 18, 2024</td>
+                            <td class="title-cell">A talk about various convolutions in recent times</td>
+                            <td><span class="conf-badge">--</span></td>
+                            <td class="speaker-cell">Dr. Mrinal Kanti Das</td>
+                            <td><span class="role-pill">Asst. Professor</span></td>
+                            <td class="venue-cell">Samgatha 307</td>
+                        </tr>
 
+                        <tr id="N938747870">
+                            <td class="date-cell">Mar 25, 2024</td>
+                            <td class="title-cell">FRESCO: Spatial-Temporal Correspondence for Zero-Shot Video Translation</td>
+                            <td><span class="conf-badge">CVPR 2024 <a href="https://arxiv.org/pdf/2403.12962v1" target="_blank">↗</a></span></td>
+                            <td class="speaker-cell">Souvik Mallick</td>
+                            <td><span class="role-pill">M.Tech Data Science</span></td>
+                            <td class="venue-cell">Samgatha 307</td>
+                        </tr>
 
+                        <tr id="N938747871">
+                            <td class="date-cell">Apr 08, 2024</td>
+                            <td class="title-cell">Describing Differences in Image Sets with Natural Language</td>
+                            <td><span class="conf-badge">CVPR 2024 <a href="https://openaccess.thecvf.com/content/CVPR2024/papers/Dunlap_Describing_Differences_in_Image_Sets_with_Natural_Language_CVPR_2024_paper.pdf" target="_blank">↗</a></span></td>
+                            <td class="speaker-cell">Chandan Kumar</td>
+                            <td><span class="role-pill">M.Tech Data Science</span></td>
+                            <td class="venue-cell">Samgatha 307</td>
+                        </tr>
 
-                                                                        <tr id="N938747861">
-                                        <td>Oct 21,<br>2024</td>
-                                        <td>Policy gradient (Policy search, Contextual Bandits) <br></td>
-                                        <td>Reinforcement Learning Lecture Series - 2 [<a href="https://onlinecourses.nptel.ac.in/noc19_cs55/preview" target="_blank">Reference</a>]<br></td>
-                                        <td>Eva Cherian</td>
-                                        <td>Research Scholar</td>
-                                        <td>Large Conference Room <br> (ICSR, Nila)</td>
-                                    </tr>
+                        <tr id="N938747872">
+                            <td class="date-cell">Apr 15, 2024</td>
+                            <td class="title-cell">Pocket2Mol: Efficient Molecular Sampling Based on 3D Protein Pockets</td>
+                            <td><span class="conf-badge">NIPS 2023 <a href="https://arxiv.org/pdf/2205.07249" target="_blank">↗</a></span></td>
+                            <td class="speaker-cell">Nitesh Singh</td>
+                            <td><span class="role-pill">M.Tech Data Science</span></td>
+                            <td class="venue-cell">Samgatha 307</td>
+                        </tr>
 
+                        <tr id="N938747873">
+                            <td class="date-cell">Apr 22, 2024</td>
+                            <td class="title-cell">SAME: Uncovering GNN Black Box with Structure-aware Shapley-based Multipiece Explanations</td>
+                            <td><span class="conf-badge">NIPS 2023 <a href="https://proceedings.neurips.cc/paper_files/paper/2023/hash/14cdc9013d80338bf81483a7736ea05c-Abstract-Conference.html" target="_blank">↗</a></span></td>
+                            <td class="speaker-cell">Dr. Sahely Bhadra</td>
+                            <td><span class="role-pill">Asst. Professor</span></td>
+                            <td class="venue-cell">Samgatha 307</td>
+                        </tr>
 
+                        <tr id="N938747853">
+                            <td class="date-cell">Jul 08, 2024</td>
+                            <td class="title-cell">Detecting Multivariate Time Series Anomalies with Zero Known Label</td>
+                            <td><span class="conf-badge">AAAI 2023 <a href="https://ojs.aaai.org/index.php/AAAI/article/view/25623" target="_blank">↗</a></span></td>
+                            <td class="speaker-cell">Vinitha M Rajan</td>
+                            <td><span class="role-pill">Research Scholar</span></td>
+                            <td class="venue-cell">Meeting Room 1, D03 (Abdul Kalam Block)</td>
+                        </tr>
 
-                                                                                                            <tr id="N938747862">
-                                        <td>Nov 11,<br>2024</td>
-                                        <td>Function approximation (Linear parameterization, State aggregation) <br></td>
-                                        <td>Reinforcement Learning Lecture Series - 3 [<a href="https://onlinecourses.nptel.ac.in/noc19_cs55/preview" target="_blank">Reference</a>]<br></td>
-                                        <td>Thomas John</td>
-                                        <td>Research Scholar</td>
-                                        <td>Large Conference Room <br> (ICSR, Nila)</td>
-                                    </tr>
-                                            
+                        <tr id="N938747854">
+                            <td class="date-cell">Jul 15, 2024</td>
+                            <td class="title-cell">Glow: Generative Flow with Invertible 1×1 Convolutions</td>
+                            <td><span class="conf-badge">AAAI 2018 <a href="https://arxiv.org/pdf/1807.03039" target="_blank">↗</a></span></td>
+                            <td class="speaker-cell">Sivani E</td>
+                            <td><span class="role-pill">M.Tech Data Science</span></td>
+                            <td class="venue-cell">Meeting Room 1 (Abdul Kalam Block)</td>
+                        </tr>
 
+                        <tr id="N938747855">
+                            <td class="date-cell">Jul 22, 2024</td>
+                            <td class="title-cell">Diffusion Model</td>
+                            <td><span class="conf-badge">Presentation on Diffusion Models</span></td>
+                            <td class="speaker-cell">Dr. Mrinal Kanti Das</td>
+                            <td><span class="role-pill">Asst. Professor</span></td>
+                            <td class="venue-cell">Meeting Room 1 (Abdul Kalam Block)</td>
+                        </tr>
 
+                        <tr id="N938747856">
+                            <td class="date-cell">Jul 29, 2024</td>
+                            <td class="title-cell">Scalable Diffusion Models with Transformers</td>
+                            <td><span class="conf-badge">ICCV 2023 <a href="https://openaccess.thecvf.com/content/ICCV2023/html/Peebles_Scalable_Diffusion_Models_with_Transformers_ICCV_2023_paper.html" target="_blank">↗</a></span></td>
+                            <td class="speaker-cell">Thomas John</td>
+                            <td><span class="role-pill">Research Scholar</span></td>
+                            <td class="venue-cell">Meeting Room 1 (Abdul Kalam Block)</td>
+                        </tr>
 
-                                                                                                            <tr id="N938747863">
-                                        <td>Nov 18,<br>2024</td>
-                                        <td>Basics of Reinforcement Learning : MDP, Bellman_Ford Equation; Q - Learning <br></td>
-                                        <td>Reinforcement Learning Lecture Series - 4 [<a href="https://www.youtube.com/playlist?list=PLYgyoWurxA_8ePNUuTLDtMvzyf-YW7im2" target="_blank">Reference</a>]<br></td>
-                                        <td>Vinitha M Rajan</td>
-                                        <td>Research Scholar</td>
-                                        <td>Large Conference Room <br> (ICSR, Nila)</td>
-                                    </tr>
+                        <tr id="N938747857">
+                            <td class="date-cell">Aug 05, 2024</td>
+                            <td class="title-cell">Directional Diffusion Models for Graph Representation Learning</td>
+                            <td><span class="conf-badge">NeurIPS 2024 <a href="https://proceedings.neurips.cc/paper_files/paper/2023/file/6751ee6546b31ceb7d4ee12276b9f4d9-Paper-Conference.pdf" target="_blank">↗</a></span></td>
+                            <td class="speaker-cell">Ankit S</td>
+                            <td><span class="role-pill">Research Scholar</span></td>
+                            <td class="venue-cell">Meeting Room 1 (Abdul Kalam Block)</td>
+                        </tr>
 
+                        <tr id="N938747858">
+                            <td class="date-cell">Aug 12, 2024</td>
+                            <td class="title-cell">Interpretable Diffusion Via Information Decomposition</td>
+                            <td><span class="conf-badge">ICLR 2024 <a href="https://arxiv.org/pdf/2310.07972" target="_blank">↗</a></span></td>
+                            <td class="speaker-cell">Vishnu B Raj</td>
+                            <td><span class="role-pill">Research Scholar</span></td>
+                            <td class="venue-cell">Meeting Room 1 (Abdul Kalam Block)</td>
+                        </tr>
 
+                        <tr id="N938747859">
+                            <td class="date-cell">Aug 19, 2024</td>
+                            <td class="title-cell">Training Normalizing Flows from Dependent Data</td>
+                            <td><span class="conf-badge">PMLR 2023 <a href="https://proceedings.mlr.press/v202/kirchler23a/kirchler23a.pdf" target="_blank">↗</a></span></td>
+                            <td class="speaker-cell">Eva Cherian</td>
+                            <td><span class="role-pill">Research Scholar</span></td>
+                            <td class="venue-cell">Large Conference Room, ICSR, Nila</td>
+                        </tr>
 
+                        <tr id="N938747860">
+                            <td class="date-cell">Sep 30, 2024</td>
+                            <td class="title-cell">Bandit Algorithms (Median Elimination, Thomson Sampling)</td>
+                            <td><span class="conf-badge">RL Lecture Series – 1 <a href="https://onlinecourses.nptel.ac.in/noc19_cs55/preview" target="_blank">↗</a></span></td>
+                            <td class="speaker-cell">Ankit S</td>
+                            <td><span class="role-pill">Research Scholar</span></td>
+                            <td class="venue-cell">Large Conference Room, ICSR, Nila</td>
+                        </tr>
 
+                        <tr id="N938747861">
+                            <td class="date-cell">Oct 21, 2024</td>
+                            <td class="title-cell">Policy Gradient (Policy Search, Contextual Bandits)</td>
+                            <td><span class="conf-badge">RL Lecture Series – 2 <a href="https://onlinecourses.nptel.ac.in/noc19_cs55/preview" target="_blank">↗</a></span></td>
+                            <td class="speaker-cell">Eva Cherian</td>
+                            <td><span class="role-pill">Research Scholar</span></td>
+                            <td class="venue-cell">Large Conference Room, ICSR, Nila</td>
+                        </tr>
 
+                        <tr id="N938747862">
+                            <td class="date-cell">Nov 11, 2024</td>
+                            <td class="title-cell">Function Approximation (Linear Parameterization, State Aggregation)</td>
+                            <td><span class="conf-badge">RL Lecture Series – 3 <a href="https://onlinecourses.nptel.ac.in/noc19_cs55/preview" target="_blank">↗</a></span></td>
+                            <td class="speaker-cell">Thomas John</td>
+                            <td><span class="role-pill">Research Scholar</span></td>
+                            <td class="venue-cell">Large Conference Room, ICSR, Nila</td>
+                        </tr>
 
-                                                                                                            <tr id="N938747864">
-                                        <td>Nov 25,<br>2024</td>
-                                        <td>Deep Q - Learning<br></td>
-                                        <td>Reinforcement Learning Lecture Series - 5 [<a href="https://www.youtube.com/playlist?list=PLYgyoWurxA_8ePNUuTLDtMvzyf-YW7im2" target="_blank">Reference</a>]<br></td>
-                                        <td>Vinitha M Rajan</td>
-                                        <td>Research Scholar</td>
-                                        <td>Large Conference Room <br> (ICSR, Nila)</td>
-                                    </tr>
-                                             
-                                                  
-                                                                                                            <tr id="N938747865">
-                                        <td>Dec 02,<br>2024</td>
-                                        <td>REINFORCE and policy gradient with function approximation<br></td>
-                                        <td>Reinforcement Learning Lecture Series - 6 [<a href="https://www.youtube.com/playlist?list=PLYgyoWurxA_-c7QKk3Gl09qE1fa5hz2pg" target="_blank">Reference</a>]<br></td>
-                                        <td>Vishnu B Raj</td>
-                                        <td>Research Scholar</td>
-                                        <td>Large Conference Room <br> (ICSR, Nila)</td>
-                                    </tr>
-                                                      
-                                                  </tbody>
-                                              </table>
-                                          </div>
-                                  
-                                    <div class="content">
-                                      <div class="col">
-                                        <h3><a href="journal_group.html">2026 Schedule</a></h3>
-										<h3><a href="journal_group_2025.html">2025 Archives</a></h3>
-										<h3><a href="journal_group_2024.html" style="color: #14A085;">2024 Archives</a></h3>
-										<h3><a href="journal_group_2023.html">2023 Archives</a></h3>
-                                        <h3><a href="journal_group_2021.html">2021 Archives</a></h3>
-					  					<h3><a href="journal_group_2020.html">2020 Archives</a></h3>
-									</div>
-                                      </div>
-                                 </p></div></div> 
-                                </section>                               
-</div> <!-- /#wrap -->
+                        <tr id="N938747863">
+                            <td class="date-cell">Nov 18, 2024</td>
+                            <td class="title-cell">Basics of Reinforcement Learning: MDP, Bellman-Ford Equation; Q-Learning</td>
+                            <td><span class="conf-badge">RL Lecture Series – 4 <a href="https://www.youtube.com/playlist?list=PLYgyoWurxA_8ePNUuTLDtMvzyf-YW7im2" target="_blank">↗</a></span></td>
+                            <td class="speaker-cell">Vinitha M Rajan</td>
+                            <td><span class="role-pill">Research Scholar</span></td>
+                            <td class="venue-cell">Large Conference Room, ICSR, Nila</td>
+                        </tr>
 
-</section>            
-                              <!--   
-                                  
-                                  
-                                  <iframe scrolling="no" allowtransparency="true" src="machine_learning_css/widget_iframe.html" title="Twitter settings iframe" style="display: none;" frameborder="0"></iframe><iframe id="rufous-sandbox" scrolling="no" allowtransparency="true" allowfullscreen="true" style="position: absolute; visibility: hidden; display: none; width: 0px; height: 0px; padding: 0px; border: medium none;" title="Twitter analytics iframe" frameborder="0"></iframe></body></html>
-                                  
-                                      © 2019 GitHub, Inc.
-                                      Terms
-                                      Privacy
-                                      Security
-                                      Status
-                                      Help
-                                  
-                                      Contact GitHub
-                                      Pricing
-                                      API
-                                      Training
-                                      Blog
-                                      About-->
+                        <tr id="N938747864">
+                            <td class="date-cell">Nov 25, 2024</td>
+                            <td class="title-cell">Deep Q-Learning</td>
+                            <td><span class="conf-badge">RL Lecture Series – 5 <a href="https://www.youtube.com/playlist?list=PLYgyoWurxA_8ePNUuTLDtMvzyf-YW7im2" target="_blank">↗</a></span></td>
+                            <td class="speaker-cell">Vinitha M Rajan</td>
+                            <td><span class="role-pill">Research Scholar</span></td>
+                            <td class="venue-cell">Large Conference Room, ICSR, Nila</td>
+                        </tr>
 
-                                    <!-- javascript
-                                        ================================================== -->
-                                    <!-- Placed at the end of the document so the pages load faster -->
-                              
-<!-- Add this just before the closing </body> tag -->
+                        <tr id="N938747865b">
+                            <td class="date-cell">Dec 02, 2024</td>
+                            <td class="title-cell">REINFORCE and Policy Gradient with Function Approximation</td>
+                            <td><span class="conf-badge">RL Lecture Series – 6 <a href="https://www.youtube.com/playlist?list=PLYgyoWurxA_-c7QKk3Gl09qE1fa5hz2pg" target="_blank">↗</a></span></td>
+                            <td class="speaker-cell">Vishnu B Raj</td>
+                            <td><span class="role-pill">Research Scholar</span></td>
+                            <td class="venue-cell">Large Conference Room, ICSR, Nila</td>
+                        </tr>
 
-</div>
+                    </tbody>
+                </table>
+            </div>
+        </div>
 
-<a href="#" class="scrollup"><i class="fa fa-angle-up active"></i></a>
+    </div><!-- /.page-body -->
 
-<!-- Your existing footer scripts -->
+</div><!-- /#wrapper -->
+
+<a href="#" class="scrollup"><i class="fa fa-angle-up"></i></a>
+
+<!-- Original scripts preserved -->
 <script src="../js/jquery.js"></script>
 <script src="../js/jquery.easing.1.3.js"></script>
 <script src="../js/bootstrap.min.js"></script>
 <script src="../js/jquery.fancybox.pack.js"></script>
-<script src="../js/jquery.fancybox-media.js"></script> 
+<script src="../js/jquery.fancybox-media.js"></script>
 <script src="../js/portfolio/jquery.quicksand.js"></script>
 <script src="../js/portfolio/setting.js"></script>
 <script src="../js/jquery.flexslider.js"></script>
 <script src="../js/animate.js"></script>
 
-
-       </body>
-       </html>
+</body>
+</html>
