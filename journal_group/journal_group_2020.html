@@ -1,429 +1,169 @@
-
-<!--Custom style css-->
-<!-- images/aside/eyediag.jpg -->
-<!-- THIS FILE cs_config.shtml SHOULD BE PRESENT                         -->
-<!-- in the same directory as the header and footer files                -->
-<!--                                                                     -->
-<!-- Only the following SSI variables may (optionally) be set here:      -->
-<!--   ics_banner   (a value possibly set by the user is overridden)     -->
-<!--   ics_type   (a value possibly set by the user is overridden)       -->
-<!--   ics_am_htype   (a value possibly set by the user is overridden)   -->
-<!--   ics_default_img_src   (cannot be set by the user)                 -->
-<!--   ics_default_maintainer   (cannot be set by the user)              -->
-
-<!--  possibly setting ics_banner, ics_type, ics_am_htype -->
-<!--  and even ics_default_img_src, ics_default_maintainer -->
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <title>Journal Club</title>
     <meta charset="utf-8">
-    <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="common.css">
-<link rel="stylesheet" href="jgroup.css">
-<link href="../css/bootstrap.min.css" rel="stylesheet" />
-<link href="../css/fancybox/jquery.fancybox.css" rel="stylesheet">
-<link href="../css/jcarousel.css" rel="stylesheet" />
-<link href="../css/flexslider.css" rel="stylesheet" />
-<link href="js/owl-carousel/owl.carousel.css" rel="stylesheet">
-<link href="../css/style.css" rel="stylesheet" />
-
-<link href="../css/font-awesome.min.css" rel="stylesheet">
-<link href="../css/animate.min.css" rel="stylesheet"> 
-<link href="../css/prettyPhoto.css" rel="stylesheet">
-
-<!--
-<link href="css/style1.css" rel="stylesheet" type="text/css"> 
-<link href="css/font-awesome1.css" rel="stylesheet" type="text/css"> 
-<link href="css/animate1.css" rel="stylesheet" type="text/css">
--->
-
-<style>
-     /* Create two columns/boxes that floats next to each other */
-     navl {
-            float: left;
-            width: 40%;
-            padding: 5%;
-        }
-p {
-    font-size: 18px;
-    font-weight: bold;
-    text-align: center;
-    
-}
-p a{
-  font-size: 20px;
-}
-p a:hover{
-    color: #f39c12;
-}
-        /* Responsive table column widths */
-        table th,
-        table td {
-            padding: 5px;
-            text-align: left;
-        }
-
-
-
-/* Make table full width and move archives below on larger screens */
-@media (min-width: 768px) {
-    .table-container {
-        display: block;
-        width: 100%;
-    }
-
-    .table-container .col {
-        width: 100%;
-    }
-
-    .archives-container {
-        margin-top: 30px;
-        width: 100%;
-    }
-}
-
-/* On smaller screens, stack the table and archives vertically */
-@media (max-width: 767px) {
-    .table-container,
-    .archives-container {
-        width: 100%;
-    }
-
-    .col {
-        width: 100%;
-    }
-}
-</style>
-
-
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="common.css">
+    <link rel="stylesheet" href="jgroup.css">
+    <link href="../css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../css/fancybox/jquery.fancybox.css" rel="stylesheet">
+    <link href="../css/jcarousel.css" rel="stylesheet" />
+    <link href="../css/flexslider.css" rel="stylesheet" />
+    <link href="../js/owl-carousel/owl.carousel.css" rel="stylesheet">
+    <link href="../css/style.css" rel="stylesheet" />
+    <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/animate.min.css" rel="stylesheet">
+    <link href="../css/prettyPhoto.css" rel="stylesheet">
+    <style>
+        :root{--ink:#0f1923;--ink-soft:#3a4a58;--ink-muted:#7a8fa0;--paper:#f7f5f0;--paper-warm:#ede9e1;--accent:#14A085;--accent-dim:#0d7a65;--accent-glow:rgba(20,160,133,.12);--rule:#d8d2c6;--shadow-sm:0 1px 4px rgba(15,25,35,.08);--shadow-md:0 4px 20px rgba(15,25,35,.10)}
+        *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+        body{background:var(--paper);color:var(--ink);font-family:'DM Sans',sans-serif;font-size:15px;line-height:1.65;-webkit-font-smoothing:antialiased}
+        .navbar.navbar-default.navbar-static-top{background:var(--ink)!important;border:none;box-shadow:none;margin-bottom:0}
+        .navbar-nav>li>a{color:rgba(255,255,255,.75)!important;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;padding:22px 14px;transition:color .2s}
+        .navbar-nav>li>a:hover,.navbar-nav>li.active>a{color:var(--accent)!important}
+        .navbar-nav>li>a[style*="14A085"]{color:var(--accent)!important}
+        .welcome-band{background:var(--paper-warm);border-bottom:1px solid var(--rule);padding:28px 40px;text-align:center}
+        .welcome-band p{font-size:15px;font-weight:400;color:var(--ink-soft);max-width:760px;margin:0 auto;line-height:1.7}
+        .page-body{max-width:1500px;margin:0 auto;padding:48px 24px 80px;display:grid;grid-template-columns:160px 1fr;gap:32px;align-items:start}
+        .year-block{min-width:0}
+        .year-heading{display:flex;align-items:center;gap:14px;margin-bottom:20px}
+        .year-heading .year-label{font-family:'DM Serif Display',serif;font-size:32px;color:var(--ink);line-height:1}
+        .year-heading .year-label a{color:inherit;text-decoration:none}
+        .year-heading .talk-count{background:var(--accent-glow);color:var(--accent-dim);font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:500;letter-spacing:.04em;padding:4px 10px;border-radius:20px;border:1px solid rgba(20,160,133,.2)}
+        .talk-table-wrap{background:#fff;border:1px solid var(--rule);border-radius:10px;overflow:hidden;box-shadow:var(--shadow-sm)}
+        .talk-table{width:100%;border-collapse:collapse;font-size:13.5px}
+        .talk-table thead tr{background:var(--ink)}
+        .talk-table thead th{color:rgba(255,255,255,.75);font-family:'DM Sans',sans-serif;font-size:11px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;padding:13px 16px;text-align:left;white-space:nowrap}
+        .talk-table tbody tr{border-bottom:1px solid var(--rule);transition:background .15s}
+        .talk-table tbody tr:last-child{border-bottom:none}
+        .talk-table tbody tr:hover{background:var(--accent-glow)}
+        .talk-table td{padding:14px 16px;vertical-align:top;color:var(--ink-soft);line-height:1.55}
+        .talk-table td.date-cell{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--ink-muted);white-space:nowrap;padding-top:16px}
+        .talk-table td.title-cell{font-size:13.5px;font-weight:500;color:var(--ink);max-width:280px}
+        .talk-table td.venue-cell{font-size:12px;color:var(--ink-muted)}
+        .talk-table td.speaker-cell{font-weight:600;color:var(--ink);white-space:nowrap}
+        .conf-badge{display:inline-block;background:var(--paper-warm);border:1px solid var(--rule);border-radius:4px;font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:500;padding:2px 7px;color:var(--ink-soft);white-space:nowrap}
+        .conf-badge a{color:var(--accent);text-decoration:none;font-weight:600;margin-left:4px}
+        .conf-badge a:hover{color:var(--accent-dim);text-decoration:underline}
+        .role-pill{display:inline-block;background:rgba(196,147,10,.1);color:#8a6200;font-size:11px;font-weight:500;padding:2px 8px;border-radius:20px;border:1px solid rgba(196,147,10,.2);white-space:nowrap}
+        .archives-sidebar{position:sticky;top:24px}
+        .archives-card{background:#fff;border:1px solid var(--rule);border-radius:10px;overflow:hidden;box-shadow:var(--shadow-sm)}
+        .archives-card-header{background:var(--ink);padding:14px 18px}
+        .archives-card-header h4{font-family:'DM Sans',sans-serif;font-size:11px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:rgba(255,255,255,.65);margin:0}
+        .archives-list{list-style:none;padding:8px 0}
+        .archives-list li{border-bottom:1px solid var(--rule)}
+        .archives-list li:last-child{border-bottom:none}
+        .archives-list li a{display:flex;align-items:center;justify-content:space-between;padding:11px 18px;font-size:13.5px;font-weight:500;color:var(--ink-soft);text-decoration:none;transition:background .15s,color .15s}
+        .archives-list li a:hover{background:var(--accent-glow);color:var(--accent)}
+        .archives-list li a.active{color:var(--accent);font-weight:600}
+        .archives-list li a .chevron{font-size:10px;color:var(--ink-muted)}
+        .archives-list li a:hover .chevron{color:var(--accent)}
+        .scrollup{position:fixed;bottom:28px;right:28px;width:40px;height:40px;background:var(--ink);border-radius:8px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:16px;text-decoration:none;box-shadow:var(--shadow-md);transition:background .2s,transform .2s}
+        .scrollup:hover{background:var(--accent);transform:translateY(-2px)}
+        @media(max-width:900px){.page-body{grid-template-columns:1fr}.archives-sidebar{position:static;order:-1}.archives-list{display:flex;flex-wrap:wrap;gap:4px;padding:12px}.archives-list li{border:none}.archives-list li a{background:var(--paper-warm);border:1px solid var(--rule);border-radius:6px;padding:7px 14px;font-size:13px}.archives-list li a .chevron{display:none}}
+        @media(max-width:640px){.talk-table td,.talk-table th{padding:10px}.talk-table td.title-cell{max-width:180px}.welcome-band{padding:20px 16px}}
+    </style>
 </head>
-
-
 <body>
-    
-        &nbsp;
-           </div>
-           <div id="wrap">
-            <header>
-                <div class="navbar navbar-default navbar-static-top">
-                    <div class="container">
-                        <div class="navbar-header">
-                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                            </button>
-                          <a class="navbar-brand" href="../index.html"><img src="../img/logo.png" width="350" height="65" alt="logo"/></a>
-                        </div>
-                        <div class="navbar-collapse collapse ">
-                            <ul class="nav navbar-nav">
-                                <li class="active"><a href="../index.html">Home</a></li> 
-                                <li><a href="../research.html">Projects</a></li>
-                                <li><a href="../people.html">People</a></li>
-                                <!-- <li><a href="#">Publications</a></li> -->
-                                <li><a href="../talktt.html">Talk Series</a></li>
-                                <li><a href="../journal_group/journal_group.html"style="color: #14A085;" >Journal Group</a></li>
-                                <li><a href="../gallery.html">Gallery </a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </header><!-- end header -->
-        
-                <section id="inner-headline">
+<div id="wrapper">
+    <header>
+        <div class="navbar navbar-default navbar-static-top">
             <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <h2 class="pageTitle">Past talks: </h2>
-                    </div>
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="../index.html"><img src="../img/logo.png" width="350" height="65" alt="logo"/></a>
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li><a href="../index.html">Home</a></li>
+                        <li><a href="../research.html">Projects</a></li>
+                        <li><a href="../people.html">People</a></li>
+                        <li><a href="../talktt.html">Talk Series</a></li>
+                        <li class="active"><a href="../journal_group/journal_group.html" style="color: #14A085;">Journal Group</a></li>
+                        <li><a href="../gallery.html">Gallery</a></li>
+                    </ul>
                 </div>
             </div>
-            </section>
-			<section>
-                <h2 style="font-size: 15px;font-weight: 500;text-align: center;
-                margin-left: 100px; margin-right: 100px; margin-top: 20px;">
-                Welcome to the Machine Learning group at IIT Palakkad. We discuss concepts, techniques and 
-                recent advancements in Machine Learning and Artificial Intelligence. <!--To get added to the mailing list, 
-                    please send an email to mlgiitpkd@googlegroups.com.--> </h2>
-					<div class="col">
-                        <h3><a href="#">2021</a></h3>
-                            <table class="sortable resizable editable">
-                                <thead>
-                                        <tr>
-                                        <th id="creation-date">Date</th>
-                                        <th id="cost">Title</th>
-                                        <th id="status">Speaker</th>
-                                        <th id="author">Speaker Info</th>
-                                        <th id="author">Venue</th>
-                                        </tr>
-                                </thead>
-                                <tfoot>
-                                </tfoot>
-                                <tbody> 
+        </div>
+    </header>
 
-					<tr id="N938747839">
-					<td>June 02, 2020</td>
-					<td>Akane Iseki et. al, Estimating the Causal Effect from Partially Observed Time Series [<a href="https://www.aaai.org/ojs/index.php/AAAI/article/view/4281/4159" target="_blank">pdf</a>]<br></td>
-					<td>Abilasha S</td>
-						<td>Research Scholar</td>
-					<td>Online Presentation via Google Meet 2.00 PM</td>
-					</tr>
-					
-					<tr id="N938747839">
-					<td>May 25, 2020</td>
-					<td>Ya Su et. al, Robust Anomaly Detection for Multivariate Time Series through Stochastic Recurrent Neural Network [<a href="https://www.kdd.org/kdd2019/accepted-papers/view/robust-anomaly-detection-for-multivariate-time-series-through-stochastic-re" target="_blank">pdf</a>]<br></td>
-					<td>Abilasha S</td>
-					<td>Research Scholar</td>
-					<td>Online Presentation via Google Meet 3.30 PM</td>
-					</tr>
-					
-					<tr id="N938747839">
-					<td>May 18, 2020</td>
-					<td>Zhang et. al, The Medical Deconfounder: Assessing Treatment Effects with Electronic Health Records [<a href="https://arxiv.org/pdf/1904.02098.pdf" target="_blank">pdf</a>]<br></td>
-					<td>Rimmon Bhosale</td>
-					<td>Research Scholar</td>
-					<td>Online Presentation via Google Meet 2.00 PM</td>
-					</tr>
-					
-					<tr id="N938747839">
-					<td>May 11, 2020</td>
-					<td>Pope et. al, Explainability Methods for Graph Convolutional Neural Networks [<a href="http://openaccess.thecvf.com/content_CVPR_2019/papers/Pope_Explainability_Methods_for_Graph_Convolutional_Neural_Networks_CVPR_2019_paper.pdf" target="_blank">pdf</a>]<br></td>
-					<td>Shikha Mallick</td>
-					<td>Research Scholar</td>
-					<td>Online Presentation via Google Meet 2.00 PM</td>
-					</tr>
-					
-					<tr id="N938747839">
-					<td>April 29, 2020</td>
-					<td>IISc-TIFR Covid-19 City-Scale Simulation Team, COVID-19 Epidemic: Unlocking the Lockdown in India (Working Paper) [<a href="https://www.google.com/url?q=https://covid19.iisc.ac.in/wp-content/uploads/2020/04/Report-1-20200419-UnlockingTheLockdownInIndia.pdf&sa=D&source=hangouts&ust=1590050909092000&usg=AFQjCNFjGDXl6UFp9Qb_XQhEJcqKaG4mfw" target="_blank">pdf</a>]<br></td>
-					<td>Gaurav Jain</td>
-					<td>Research Scholar</td>
-					<td>Online Presentation via Google Meet 2.00 PM</td>
-					</tr>
-					
-					<tr id="N938747839">
-					<td>April 20, 2020</td>
-					<td>Jean-Yves Franceschi et. al, Unsupervised Scalable Representation Learning for Multivariate Time Series [<a href="https://papers.nips.cc/paper/8713-unsupervised-scalable-representation-learning-for-multivariate-time-series" target="_blank">pdf</a>]<br></td>
-					<td>Abilasha S</td>
-					<td>Research Scholar</td>
-					<td>Online Presentation via Google Meet 4.00 PM</td>
-					</tr>
-					
-					<tr id="N938747839">
-					<td>March 16, 2020</td>
-					<td>Qianli Ma et. al, Learning Representations for Time Series Clustering [<a href="https://papers.nips.cc/paper/8634-learning-representations-for-time-series-clustering" target="_blank">pdf</a>]<br></td>
-					<td>Abilasha S</td>
-					<td>Research Scholar</td>
-					<td>Conference Room (Ahalia Campus) 2.00 PM</td>
-					</tr>
-					
-					<tr id="N938747839">
-					<td>March 09, 2020</td>
-					<td>Leskovec et. al, Hierarchical Graph Representation Learning with Differentiable Pooling [<a href="https://arxiv.org/pdf/1806.08804.pdf" target="_blank">pdf</a>]<br></td>
-					<td>Shikha Mallick</td>
-					<td>Research Scholar</td>
-					<td>Conference Room (Ahalia Campus) 2.00 PM</td>
-					</tr>
-					
-					<tr id="N938747839">
-					<td>March 02, 2020</td>
-					<td>Kocaoglu et. al, CausalGAN: Learning Causal Implicit Generative Models With Adversarial Training [<a href="https://openreview.net/pdf?id=BJE-4xW0W" target="_blank">pdf</a>]<br></td>
-					<td>Rimmon Bhosale</td>
-					<td>Research Scholar</td>
-					<td>Conference Room(Ahalia Campus) 2.00 PM</td>
-					</tr>
-					
-					<tr id="N938747839">
-					<td>February 17, 2020</td>
-					<td>Abadi et. al, Deep Learning with Differentiable Privacy [<a href="https://arxiv.org/pdf/1607.00133.pdf" target="_blank">pdf</a>]<br></td>
-					<td>Rekha Raj C T</td>
-					<td>Research Scholar</td>
-					<td>Room 112 (Ahalia Campus) 2.00 PM</td>
-					</tr>
-					
-					<tr id="N938747839">
-					<td>February 10, 2020</td>
-					<td>Goodfellow et. al, Deep Learning [<a href="https://www.nature.com/articles/nature14539.pdf" target="_blank">pdf</a>]<br></td>
-					<td>Gaurav Jain</td>
-					<td>Research Scholar</td>
-					<td>Conference Room(Ahalia Campus) 2.00 PM</td>
-					</tr>
-					
-					<tr id="N938747839">
-					<td>February 03, 2020</td>
-					<td>Zhang et. al, Modeling Extreme Events in Time Series Data [<a href="http://staff.ustc.edu.cn/~hexn/papers/kdd19-timeseries.pdf" target="_blank">pdf</a>]<br></td>
-					<td>Abilasha S</td>
-					<td>Research Scholar</td>
-					<td>Conference Room(Ahalia Campus) 2.00 PM</td>
-					</tr>
-					
-					<tr id="N938747839">
-					<td>January 27, 2020</td>
-					<td>Zitnik and Leskovec, Predicting multicellular function through multi-layer tissue networks [<a href="https://arxiv.org/pdf/1707.04638.pdf" target="_blank">pdf</a>]<br></td>
-					<td>Shikha Mallick</td>
-					<td>Research Scholar</td>
-					<td>Conference Room(Ahalia Campus) 2.00 PM</td>
-					</tr>
-					
-					<tr id="N938747839">
-					<td>January 20, 2020</td>
-					<td>A Survey on Responsible AI [<a href="https://www.overleaf.com/read/vkjbrwvmxqtn" target="_blank">pdf</a>]<br></td>
-					<td>Rimmon Bhosale</td>
-					<td>Research Scholar</td>
-					<td>Room 112(Ahalia Campus) 1.30 PM</td>
-					</tr>
-					
-					<tr id="N938747839">
-					<td>January 13, 2020</td>
-					<td>Zhao et. al.,Differential Privacy Preservation in Deep Learning: Challenges, Opportunities and Solutions [<a href="https://ieeexplore.ieee.org/document/8683991" target="_blank">pdf</a>]<br></td>
-					<td>Rekha Raj C T</td>
-					<td>Research Scholar</td>
-					<td>Conference Room (Ahalia Campus) 2.00 PM</td>
-					</tr>
-					
-					<tr id="N938747839">
-					<td>December 3, 2019</td>
-					<td> Salisman et. al.,Improved techniques for training GANs [<a href="http://papers.nips.cc/paper/6125-improved-techniques-for-training-gans.pdf" target="_blank">pdf</a>]<br></td>
-					<td>Rekha  Raj C T</td>
-					<td>Research Scholar</td>
-					<td>Room No: 112 (Ahalia Campus) 4.00 PM</td>
-					</tr>
-					
-					<tr id="N938747839">
-					<td>October 5, 2019</td>
-					<td>Dan Li1, Dacheng Chen,et. al.,MAD-GAN: Multivariate Anomaly Detection for Time Series Datawith Generative Adversarial Networks, arXiv 2019 [<a href="https://arxiv.org/pdf/1901.04997.pdf" target="_blank">pdf</a>]<br></td>
-					<td>Abilasha S</td>
-				  	<td>Research Scholar</td>
-					<td>Room No: 18 (Ahalia Campus) 4.00 PM</td>
-					</tr>
-					
-					<tr id="N938747839">
-					<td>September 17, 2019</td>
-					<td>Chuxu Zhang,Dongjin Song,et. al.,A Deep Neural Network for Unsupervised Anomaly Detection and Diagnosis in Multivariate Time Series Data, AAAI 2019 [<a href="https://arxiv.org/pdf/1811.08055.pdf" target="_blank">pdf</a>]<br></td>
-					<td>Jishy Samuel</td>	
-				    	<td>Research Scholar</td>
-					<td>Room No: 18 (Ahalia Campus) 4.00 PM</td>
-					</tr>
-					
-					<tr id="N938747839">
-					<td>September 03, 2019</td>
-					<td>William L. Hamilton, Rex Ying, Jure Leskovec, Inductive Representation Learning on Large Graphs, NIPS 2017 [<a href="https://cs.stanford.edu/people/jure/pubs/graphsage-nips17.pdf" target="_blank">pdf</a>]<br></td>
-					<td>Shikha Mallick</td>
-					<td>Research Scholar</td>
-					<td>Room No: 18 (Ahalia Campus) 4.00 PM</td>
-					</tr>
-					
-					<tr id="N938747839">
-					<td>August 27, 2019</td>
-					<td>Yunus Saatchi,Andrew Gordon Wilson,Bayesian GAN,NIPS 2017 [<a href="https://arxiv.org/pdf/1705.09558" target="_blank">pdf</a>]<br></td>
-					<td>Rimmon Bhosale</td>
-				    	<td>Research Scholar</td>
-					<td>Room No: 18 (Ahalia Campus) 4.00 PM</td>
-					</tr>
-					
-					<tr id="N938747839">
-					<td>August 13, 2019</td>
-					<td>Chuanqi Tan et al.,A Survey on Deep Transfer Learning, [<a href="https://arxiv.org/pdf/1808.01974" target="_blank">pdf</a>]<br></td>
-					<td>Abilasha S</td>
-					<td>Research Scholar</td>
-					<td>Room No: 18 (Ahalia Campus) 2.00 PM</td>
-					</tr>
-					
-					<tr id="N938747839">
-					<td>August 05, 2019</td>
-					<td>Tolsikhin, Ilya O., et al., Adagan: Boosting generative models, NIPS 2017. [<a href="https://papers.nips.cc/paper/7126-adagan-boosting-generative-models-supplemental.zip" target="_blank">pdf</a>]<br></td>
-					<td>Rekha Raj C T </td>
-					<td>Research Scholar</td>
-					<td>Room No: 18 (Ahalia Campus) 2.00 PM</td>
-					</tr>
-		  
-					<tr id="N938747839">
-					<td>July 01, 2019</td>
-					<td> Bunne et al., Learning Generative Models across Incomparable Spaces   [<a href="http://proceedings.mlr.press/v97/bunne19a/bunne19a.pdf" target="_blank">pdf</a>],<br> Hwang et al., HexaGAN: Generative Adversarial Nets for Real World Classification [<a href="http://proceedings.mlr.press/v97/hwang19a/hwang19a.pdf" target="_blank">pdf</a>]<br></td>
-					<td>Abilasha S, Rekha Raj C T </td>
-					<td>Research Scholars</td>
-					<td>Room No: 18 (Ahalia Campus) 11.00 AM</td>
-					</tr>
-					
-					<tr id="N938747839">
-					<td>June 24, 2019</td>
-					<td> Houlsby et al.,Bayesian active learning for classification and preference learning, 2011.[<a href="https://arxiv.org/pdf/1112.5745" target="_blank">pdf</a>],<br> Deep Factors for Forecasting [<a href="http://proceedings.mlr.press/v97/wang19k.html" target="_blank">pdf</a>],<br></td>
-					<td>Abilasha S, Rekha Raj C T </td>
-					<td>Research Scholars</td>
-					<td>Room No: 33 (Ahalia Campus) 11.30 AM</td>
-					</tr>
-					
-					<tr id="N938747839">
-					<td>June 10, 2019</td>
-					<td> Houlsby et al.,Bayesian active learning for classification and preference learning, 2011.[<a href="https://arxiv.org/pdf/1112.5745" target="_blank">pdf</a>],<br> Group Invariance, Stability to Deformations, and Complexity of Deep Convolutional Representations ,JMLR [<a href="http://jmlr.org/papers/volume20/18-190/18-190.pdf" target="_blank">pdf</a>],<br> Birant and Kut, ST-DBSCAN: An algorithm for clustering spatial–temporal data, Data & Knowledge Engineering. 2007   [<a href="https://www.sciencedirect.com/science/article/pii/S0169023X06000218">site</a>]<br></td>
-					<td>Abilasha S, Aparna R, Rekha Raj C T </td>
-					<td>Research Scholars</td>
-					<td>Room No: 33 (Ahalia Campus) 10.30 AM</td>
-					</tr>
-					
-					
-					<tr id="N938747839">
-					<td>June 03, 2019</td>
-					<td> Tran et al.,Bayesian Generative Active Deep Learning, ICML 2019.[<a href="http://proceedings.mlr.press/v97/tran19a/tran19a.pdf" target="_blank">pdf</a>],A Kernel Perspective for Regularizing Deep Neural Networks, ICML 2019, [<a href="http://proceedings.mlr.press/v97/bietti19a/bietti19a.pdf" target="_blank">pdf</a>],Chen et al., Clustering Dynamic Spatio-Temporal Patterns in the Presence of Noise and Missing Data,IJCAI 2015 [<a href="https://www.ijcai.org/Proceedings/15/Papers/365.pdf" target="_blank">pdf</a>]<br></td>
-					<td>Abilasha S, Aparna R, Rekha Raj C T </td>
-					<td>Research Scholars</td>
-					<td>Room No: 33 (Ahalia Campus) 11.00 AM</td>
-					</tr>
-					
-					<tr id="N938747839">
-					<td>May 28th, 2019</td>
-					<td> Zaheer et al.  Li et al., MMD GAN: Towards Deeper Understanding of Moment Matching Network, NIPS 2017[<a href="http://papers.nips.cc/paper/6815-mmd-gan-towards-deeper-understanding-of-moment-matching-network.pdf" target="_blank">pdf</a>]<br>Solar Radio Burst Data Processing of CALLISTO and Frequency Drift Rate Determination of Solar Radio Burst Detected by CALLISTO Network in Indonesia [<a href="https://iopscience.iop.org/article/10.1088/1757-899X/180/1/012049/meta" target="_blank">pdf</a>] <br></td>
-					<td>Rekha Raj C T, Abilasha S, Aparna R</td>
-					<td>Research Scholars</td>
-					<td>Room No: 33 (Ahalia Campus) 2.00 PM</td>
-					</tr>
-					
-					<tr id="N938747839">
-					<td>May 10th, 2019</td>
-					<td> Zaheer et al.  GAN Connoisseur: Can GANs Learn Simple 1D Parametric Distributions? [<a href="http://www.cs.cmu.edu/~chunlial/docs/dltp17gan.pdf" target="_blank">pdf</a>]<br>Machine Learning and Data Analysis in Astroinformatics [<a href="https://www.elen.ucl.ac.be/Proceedings/esann/esannpdf/es2018-2.pdf" target="_blank">pdf</a>] <br>Hetero-ConvLSTM: A Deep Learning Approach to Traffic Accident prediction on Heterogeneous Spatio-Tem [<a href="http://delivery.acm.org/10.1145/3220000/3219922/p984-yuan.pdf?ip=14.139.174.51&id=3219922&acc=OPENTOC&key=045416EF4DDA69D9%2E69AB99E0DA87B7F2%2E4D4702B0C3E38B35%2E054E54E275136550&__acm__=1557405585_a40a9c08320c952ad54a7c6bc5de913c" target="_blank">pdf</a>]</td>
-					<td>Rekha Raj C T, Abilasha S, Aparna R</td>
-					<td>Research Scholars</td>
-					<td>Room No: 33 (Ahalia Campus) 11.00 AM</td>
-					</tr>
-		  
-					<tr id="N938747839">
-					<td>May 6th, 2019</td>
-					<td>None</td>
-					<td>Rekha Raj C T, Abilasha S, Aparna R</td>
-					<td>Research Scholars</td><td>Room No: 33 (Ahalia Campus)</td>
-					</tr>
-					
-				</tbody>
-			</table>
-		</div>
+    <div class="welcome-band">
+        <p>Welcome to the Machine Learning group at IIT Palakkad. We discuss concepts, techniques and recent advancements in Machine Learning and Artificial Intelligence.</p>
+    </div>
 
+    <div class="page-body">
+        <aside class="archives-sidebar">
+            <div class="archives-card">
+                <div class="archives-card-header"><h4>Archives</h4></div>
+                <ul class="archives-list">
+                    <li><a href="journal_group.html">2026 <span class="chevron">▶</span></a></li>
+                    <li><a href="journal_group_2025.html">2025 <span class="chevron">▶</span></a></li>
+                    <li><a href="journal_group_2024.html">2024 <span class="chevron">▶</span></a></li>
+                    <li><a href="journal_group_2023.html">2023 <span class="chevron">▶</span></a></li>
+                    <li><a href="journal_group_2021.html">2021 <span class="chevron">▶</span></a></li>
+                    <li><a href="journal_group_2020.html" class="active">2020 <span class="chevron">▶</span></a></li>
+                </ul>
+            </div>
+        </aside>
 
-				<div class="content">
-                                      <div class="col">
-                                        <h3><a href="journal_group.html">2026 Schedule</a></h3>
-										<h3><a href="journal_group_2025.html">2025 Archives</a></h3>
-										<h3><a href="journal_group_2024.html">2024 Archives</a></h3>
-										<h3><a href="journal_group_2023.html">2023 Archives</a></h3>
-                                        <h3><a href="journal_group_2021.html">2021 Archives</a></h3>
-					  					<h3><a href="journal_group_2020.html" style="color: #14A085;">2020 Archives</a></h3>
-									</div>
-                </div>
-				
-   </p></div></div> <!-- /.section -->
-  </div> <!-- /#wrap -->
-	
-	
+        <div class="year-block">
+            <div class="year-heading">
+                <span class="year-label"><a href="#">2019 – 2020</a></span>
+                <span class="talk-count">24 talks</span>
+            </div>
+            <div class="talk-table-wrap">
+                <table class="talk-table">
+                    <thead>
+                        <tr><th>Date</th><th>Title</th><th>Speaker</th><th>Role</th><th>Location</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td class="date-cell">Jun 02, 2020</td><td class="title-cell">Akane Iseki et al., Estimating the Causal Effect from Partially Observed Time Series <a href="https://www.aaai.org/ojs/index.php/AAAI/article/view/4281/4159" target="_blank" style="color:var(--accent)">↗</a></td><td class="speaker-cell">Abilasha S</td><td><span class="role-pill">Research Scholar</span></td><td class="venue-cell">Online via Google Meet, 2:00 PM</td></tr>
+                        <tr><td class="date-cell">May 25, 2020</td><td class="title-cell">Ya Su et al., Robust Anomaly Detection for Multivariate Time Series through Stochastic Recurrent Neural Network <a href="https://www.kdd.org/kdd2019/accepted-papers/view/robust-anomaly-detection-for-multivariate-time-series-through-stochastic-re" target="_blank" style="color:var(--accent)">↗</a></td><td class="speaker-cell">Abilasha S</td><td><span class="role-pill">Research Scholar</span></td><td class="venue-cell">Online via Google Meet, 3:30 PM</td></tr>
+                        <tr><td class="date-cell">May 18, 2020</td><td class="title-cell">Zhang et al., The Medical Deconfounder: Assessing Treatment Effects with Electronic Health Records <a href="https://arxiv.org/pdf/1904.02098.pdf" target="_blank" style="color:var(--accent)">↗</a></td><td class="speaker-cell">Rimmon Bhosale</td><td><span class="role-pill">Research Scholar</span></td><td class="venue-cell">Online via Google Meet, 2:00 PM</td></tr>
+                        <tr><td class="date-cell">May 11, 2020</td><td class="title-cell">Pope et al., Explainability Methods for Graph Convolutional Neural Networks <a href="http://openaccess.thecvf.com/content_CVPR_2019/papers/Pope_Explainability_Methods_for_Graph_Convolutional_Neural_Networks_CVPR_2019_paper.pdf" target="_blank" style="color:var(--accent)">↗</a></td><td class="speaker-cell">Shikha Mallick</td><td><span class="role-pill">Research Scholar</span></td><td class="venue-cell">Online via Google Meet, 2:00 PM</td></tr>
+                        <tr><td class="date-cell">Apr 29, 2020</td><td class="title-cell">IISc-TIFR Covid-19 Team, COVID-19 Epidemic: Unlocking the Lockdown in India <a href="https://covid19.iisc.ac.in/wp-content/uploads/2020/04/Report-1-20200419-UnlockingTheLockdownInIndia.pdf" target="_blank" style="color:var(--accent)">↗</a></td><td class="speaker-cell">Gaurav Jain</td><td><span class="role-pill">Research Scholar</span></td><td class="venue-cell">Online via Google Meet, 2:00 PM</td></tr>
+                        <tr><td class="date-cell">Apr 20, 2020</td><td class="title-cell">Jean-Yves Franceschi et al., Unsupervised Scalable Representation Learning for Multivariate Time Series <a href="https://papers.nips.cc/paper/8713-unsupervised-scalable-representation-learning-for-multivariate-time-series" target="_blank" style="color:var(--accent)">↗</a></td><td class="speaker-cell">Abilasha S</td><td><span class="role-pill">Research Scholar</span></td><td class="venue-cell">Online via Google Meet, 4:00 PM</td></tr>
+                        <tr><td class="date-cell">Mar 16, 2020</td><td class="title-cell">Qianli Ma et al., Learning Representations for Time Series Clustering <a href="https://papers.nips.cc/paper/8634-learning-representations-for-time-series-clustering" target="_blank" style="color:var(--accent)">↗</a></td><td class="speaker-cell">Abilasha S</td><td><span class="role-pill">Research Scholar</span></td><td class="venue-cell">Conference Room (Ahalia Campus), 2:00 PM</td></tr>
+                        <tr><td class="date-cell">Mar 09, 2020</td><td class="title-cell">Leskovec et al., Hierarchical Graph Representation Learning with Differentiable Pooling <a href="https://arxiv.org/pdf/1806.08804.pdf" target="_blank" style="color:var(--accent)">↗</a></td><td class="speaker-cell">Shikha Mallick</td><td><span class="role-pill">Research Scholar</span></td><td class="venue-cell">Conference Room (Ahalia Campus), 2:00 PM</td></tr>
+                        <tr><td class="date-cell">Mar 02, 2020</td><td class="title-cell">Kocaoglu et al., CausalGAN: Learning Causal Implicit Generative Models With Adversarial Training <a href="https://openreview.net/pdf?id=BJE-4xW0W" target="_blank" style="color:var(--accent)">↗</a></td><td class="speaker-cell">Rimmon Bhosale</td><td><span class="role-pill">Research Scholar</span></td><td class="venue-cell">Conference Room (Ahalia Campus), 2:00 PM</td></tr>
+                        <tr><td class="date-cell">Feb 17, 2020</td><td class="title-cell">Abadi et al., Deep Learning with Differentiable Privacy <a href="https://arxiv.org/pdf/1607.00133.pdf" target="_blank" style="color:var(--accent)">↗</a></td><td class="speaker-cell">Rekha Raj C T</td><td><span class="role-pill">Research Scholar</span></td><td class="venue-cell">Room 112 (Ahalia Campus), 2:00 PM</td></tr>
+                        <tr><td class="date-cell">Feb 10, 2020</td><td class="title-cell">Goodfellow et al., Deep Learning <a href="https://www.nature.com/articles/nature14539.pdf" target="_blank" style="color:var(--accent)">↗</a></td><td class="speaker-cell">Gaurav Jain</td><td><span class="role-pill">Research Scholar</span></td><td class="venue-cell">Conference Room (Ahalia Campus), 2:00 PM</td></tr>
+                        <tr><td class="date-cell">Feb 03, 2020</td><td class="title-cell">Zhang et al., Modeling Extreme Events in Time Series Data <a href="http://staff.ustc.edu.cn/~hexn/papers/kdd19-timeseries.pdf" target="_blank" style="color:var(--accent)">↗</a></td><td class="speaker-cell">Abilasha S</td><td><span class="role-pill">Research Scholar</span></td><td class="venue-cell">Conference Room (Ahalia Campus), 2:00 PM</td></tr>
+                        <tr><td class="date-cell">Jan 27, 2020</td><td class="title-cell">Zitnik and Leskovec, Predicting Multicellular Function through Multi-layer Tissue Networks <a href="https://arxiv.org/pdf/1707.04638.pdf" target="_blank" style="color:var(--accent)">↗</a></td><td class="speaker-cell">Shikha Mallick</td><td><span class="role-pill">Research Scholar</span></td><td class="venue-cell">Conference Room (Ahalia Campus), 2:00 PM</td></tr>
+                        <tr><td class="date-cell">Jan 20, 2020</td><td class="title-cell">A Survey on Responsible AI <a href="https://www.overleaf.com/read/vkjbrwvmxqtn" target="_blank" style="color:var(--accent)">↗</a></td><td class="speaker-cell">Rimmon Bhosale</td><td><span class="role-pill">Research Scholar</span></td><td class="venue-cell">Room 112 (Ahalia Campus), 1:30 PM</td></tr>
+                        <tr><td class="date-cell">Jan 13, 2020</td><td class="title-cell">Zhao et al., Differential Privacy Preservation in Deep Learning: Challenges, Opportunities and Solutions <a href="https://ieeexplore.ieee.org/document/8683991" target="_blank" style="color:var(--accent)">↗</a></td><td class="speaker-cell">Rekha Raj C T</td><td><span class="role-pill">Research Scholar</span></td><td class="venue-cell">Conference Room (Ahalia Campus), 2:00 PM</td></tr>
+                        <tr><td class="date-cell">Dec 03, 2019</td><td class="title-cell">Salimans et al., Improved Techniques for Training GANs <a href="http://papers.nips.cc/paper/6125-improved-techniques-for-training-gans.pdf" target="_blank" style="color:var(--accent)">↗</a></td><td class="speaker-cell">Rekha Raj C T</td><td><span class="role-pill">Research Scholar</span></td><td class="venue-cell">Room 112 (Ahalia Campus), 4:00 PM</td></tr>
+                        <tr><td class="date-cell">Oct 05, 2019</td><td class="title-cell">Dan Li et al., MAD-GAN: Multivariate Anomaly Detection for Time Series Data with Generative Adversarial Networks <a href="https://arxiv.org/pdf/1901.04997.pdf" target="_blank" style="color:var(--accent)">↗</a></td><td class="speaker-cell">Abilasha S</td><td><span class="role-pill">Research Scholar</span></td><td class="venue-cell">Room 18 (Ahalia Campus), 4:00 PM</td></tr>
+                        <tr><td class="date-cell">Sep 17, 2019</td><td class="title-cell">Chuxu Zhang et al., A Deep Neural Network for Unsupervised Anomaly Detection and Diagnosis in Multivariate Time Series Data <a href="https://arxiv.org/pdf/1811.08055.pdf" target="_blank" style="color:var(--accent)">↗</a></td><td class="speaker-cell">Jishy Samuel</td><td><span class="role-pill">Research Scholar</span></td><td class="venue-cell">Room 18 (Ahalia Campus), 4:00 PM</td></tr>
+                        <tr><td class="date-cell">Sep 03, 2019</td><td class="title-cell">Hamilton, Ying, Leskovec, Inductive Representation Learning on Large Graphs <a href="https://cs.stanford.edu/people/jure/pubs/graphsage-nips17.pdf" target="_blank" style="color:var(--accent)">↗</a></td><td class="speaker-cell">Shikha Mallick</td><td><span class="role-pill">Research Scholar</span></td><td class="venue-cell">Room 18 (Ahalia Campus), 4:00 PM</td></tr>
+                        <tr><td class="date-cell">Aug 27, 2019</td><td class="title-cell">Yunus Saatchi, Andrew Gordon Wilson, Bayesian GAN <a href="https://arxiv.org/pdf/1705.09558" target="_blank" style="color:var(--accent)">↗</a></td><td class="speaker-cell">Rimmon Bhosale</td><td><span class="role-pill">Research Scholar</span></td><td class="venue-cell">Room 18 (Ahalia Campus), 4:00 PM</td></tr>
+                        <tr><td class="date-cell">Aug 13, 2019</td><td class="title-cell">Chuanqi Tan et al., A Survey on Deep Transfer Learning <a href="https://arxiv.org/pdf/1808.01974" target="_blank" style="color:var(--accent)">↗</a></td><td class="speaker-cell">Abilasha S</td><td><span class="role-pill">Research Scholar</span></td><td class="venue-cell">Room 18 (Ahalia Campus), 2:00 PM</td></tr>
+                        <tr><td class="date-cell">Aug 05, 2019</td><td class="title-cell">Tolsikhin et al., AdaGAN: Boosting Generative Models <a href="https://papers.nips.cc/paper/7126-adagan-boosting-generative-models-supplemental.zip" target="_blank" style="color:var(--accent)">↗</a></td><td class="speaker-cell">Rekha Raj C T</td><td><span class="role-pill">Research Scholar</span></td><td class="venue-cell">Room 18 (Ahalia Campus), 2:00 PM</td></tr>
+                        <tr><td class="date-cell">Jul 01, 2019</td><td class="title-cell">Bunne et al., Learning Generative Models across Incomparable Spaces <a href="http://proceedings.mlr.press/v97/bunne19a/bunne19a.pdf" target="_blank" style="color:var(--accent)">↗</a>; Hwang et al., HexaGAN: Generative Adversarial Nets for Real World Classification <a href="http://proceedings.mlr.press/v97/hwang19a/hwang19a.pdf" target="_blank" style="color:var(--accent)">↗</a></td><td class="speaker-cell">Abilasha S, Rekha Raj C T</td><td><span class="role-pill">Research Scholars</span></td><td class="venue-cell">Room 18 (Ahalia Campus), 11:00 AM</td></tr>
+                        <tr><td class="date-cell">Jun 24, 2019</td><td class="title-cell">Houlsby et al., Bayesian Active Learning for Classification and Preference Learning <a href="https://arxiv.org/pdf/1112.5745" target="_blank" style="color:var(--accent)">↗</a>; Deep Factors for Forecasting <a href="http://proceedings.mlr.press/v97/wang19k.html" target="_blank" style="color:var(--accent)">↗</a></td><td class="speaker-cell">Abilasha S, Rekha Raj C T</td><td><span class="role-pill">Research Scholars</span></td><td class="venue-cell">Room 33 (Ahalia Campus), 11:30 AM</td></tr>
+                        <tr><td class="date-cell">Jun 10, 2019</td><td class="title-cell">Houlsby et al., Bayesian Active Learning <a href="https://arxiv.org/pdf/1112.5745" target="_blank" style="color:var(--accent)">↗</a>; Group Invariance, Stability to Deformations, and Complexity of Deep Convolutional Representations <a href="http://jmlr.org/papers/volume20/18-190/18-190.pdf" target="_blank" style="color:var(--accent)">↗</a>; Birant and Kut, ST-DBSCAN <a href="https://www.sciencedirect.com/science/article/pii/S0169023X06000218" target="_blank" style="color:var(--accent)">↗</a></td><td class="speaker-cell">Abilasha S, Aparna R, Rekha Raj C T</td><td><span class="role-pill">Research Scholars</span></td><td class="venue-cell">Room 33 (Ahalia Campus), 10:30 AM</td></tr>
+                        <tr><td class="date-cell">Jun 03, 2019</td><td class="title-cell">Tran et al., Bayesian Generative Active Deep Learning <a href="http://proceedings.mlr.press/v97/tran19a/tran19a.pdf" target="_blank" style="color:var(--accent)">↗</a>; A Kernel Perspective for Regularizing Deep Neural Networks <a href="http://proceedings.mlr.press/v97/bietti19a/bietti19a.pdf" target="_blank" style="color:var(--accent)">↗</a>; Chen et al., Clustering Dynamic Spatio-Temporal Patterns <a href="https://www.ijcai.org/Proceedings/15/Papers/365.pdf" target="_blank" style="color:var(--accent)">↗</a></td><td class="speaker-cell">Abilasha S, Aparna R, Rekha Raj C T</td><td><span class="role-pill">Research Scholars</span></td><td class="venue-cell">Room 33 (Ahalia Campus), 11:00 AM</td></tr>
+                        <tr><td class="date-cell">May 28, 2019</td><td class="title-cell">Li et al., MMD GAN: Towards Deeper Understanding of Moment Matching Network <a href="http://papers.nips.cc/paper/6815-mmd-gan-towards-deeper-understanding-of-moment-matching-network.pdf" target="_blank" style="color:var(--accent)">↗</a>; Solar Radio Burst Data Processing of CALLISTO <a href="https://iopscience.iop.org/article/10.1088/1757-899X/180/1/012049/meta" target="_blank" style="color:var(--accent)">↗</a></td><td class="speaker-cell">Rekha Raj C T, Abilasha S, Aparna R</td><td><span class="role-pill">Research Scholars</span></td><td class="venue-cell">Room 33 (Ahalia Campus), 2:00 PM</td></tr>
+                        <tr><td class="date-cell">May 10, 2019</td><td class="title-cell">GAN Connoisseur: Can GANs Learn Simple 1D Parametric Distributions? <a href="http://www.cs.cmu.edu/~chunlial/docs/dltp17gan.pdf" target="_blank" style="color:var(--accent)">↗</a>; Machine Learning and Data Analysis in Astroinformatics <a href="https://www.elen.ucl.ac.be/Proceedings/esann/esannpdf/es2018-2.pdf" target="_blank" style="color:var(--accent)">↗</a>; Hetero-ConvLSTM: Traffic Accident Prediction <a href="http://delivery.acm.org/10.1145/3220000/3219922/p984-yuan.pdf" target="_blank" style="color:var(--accent)">↗</a></td><td class="speaker-cell">Rekha Raj C T, Abilasha S, Aparna R</td><td><span class="role-pill">Research Scholars</span></td><td class="venue-cell">Room 33 (Ahalia Campus), 11:00 AM</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
 
-	
-</section>
+<a href="#" class="scrollup"><i class="fa fa-angle-up"></i></a>
 <script src="../js/jquery.js"></script>
 <script src="../js/jquery.easing.1.3.js"></script>
 <script src="../js/bootstrap.min.js"></script>
 <script src="../js/jquery.fancybox.pack.js"></script>
-<script src="../js/jquery.fancybox-media.js"></script> 
+<script src="../js/jquery.fancybox-media.js"></script>
 <script src="../js/portfolio/jquery.quicksand.js"></script>
 <script src="../js/portfolio/setting.js"></script>
 <script src="../js/jquery.flexslider.js"></script>

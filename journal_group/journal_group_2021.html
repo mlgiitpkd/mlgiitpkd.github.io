@@ -1,441 +1,167 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <title>Journal Club</title>
     <meta charset="utf-8">
-    <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="common.css">
-<link rel="stylesheet" href="jgroup.css">
-<link href="../css/bootstrap.min.css" rel="stylesheet" />
-<link href="../css/fancybox/jquery.fancybox.css" rel="stylesheet">
-<link href="../css/jcarousel.css" rel="stylesheet" />
-<link href="../css/flexslider.css" rel="stylesheet" />
-<link href="js/owl-carousel/owl.carousel.css" rel="stylesheet">
-<link href="../css/style.css" rel="stylesheet" />
-
-<link href="../css/font-awesome.min.css" rel="stylesheet">
-<link href="../css/animate.min.css" rel="stylesheet"> 
-<link href="../css/prettyPhoto.css" rel="stylesheet">
-
-<!--
-<link href="css/style1.css" rel="stylesheet" type="text/css"> 
-<link href="css/font-awesome1.css" rel="stylesheet" type="text/css"> 
-<link href="css/animate1.css" rel="stylesheet" type="text/css">
--->
-
-<style>
-     /* Create two columns/boxes that floats next to each other */
-     navl {
-            float: left;
-            width: 40%;
-            padding: 5%;
-        }
-p {
-    font-size: 18px;
-    font-weight: bold;
-    text-align: center;
-    
-}
-p a{
-  font-size: 20px;
-}
-p a:hover{
-    color: #f39c12;
-}
-
-        /* Responsive table column widths */
-        table th,
-        table td {
-            padding: 5px;
-            text-align: left;
-        }
-
-
-/* Make table full width and move archives below on larger screens */
-@media (min-width: 768px) {
-    .table-container {
-        display: block;
-        width: 100%;
-    }
-
-    .table-container .col {
-        width: 100%;
-    }
-
-    .archives-container {
-        margin-top: 30px;
-        width: 100%;
-    }
-}
-
-/* On smaller screens, stack the table and archives vertically */
-@media (max-width: 767px) {
-    .table-container,
-    .archives-container {
-        width: 100%;
-    }
-
-    .col {
-        width: 100%;
-    }
-}
-</style>
-
-
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="common.css">
+    <link rel="stylesheet" href="jgroup.css">
+    <link href="../css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../css/fancybox/jquery.fancybox.css" rel="stylesheet">
+    <link href="../css/jcarousel.css" rel="stylesheet" />
+    <link href="../css/flexslider.css" rel="stylesheet" />
+    <link href="../js/owl-carousel/owl.carousel.css" rel="stylesheet">
+    <link href="../css/style.css" rel="stylesheet" />
+    <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/animate.min.css" rel="stylesheet">
+    <link href="../css/prettyPhoto.css" rel="stylesheet">
+    <style>
+        :root{--ink:#0f1923;--ink-soft:#3a4a58;--ink-muted:#7a8fa0;--paper:#f7f5f0;--paper-warm:#ede9e1;--accent:#14A085;--accent-dim:#0d7a65;--accent-glow:rgba(20,160,133,.12);--rule:#d8d2c6;--shadow-sm:0 1px 4px rgba(15,25,35,.08);--shadow-md:0 4px 20px rgba(15,25,35,.10)}
+        *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+        body{background:var(--paper);color:var(--ink);font-family:'DM Sans',sans-serif;font-size:15px;line-height:1.65;-webkit-font-smoothing:antialiased}
+        .navbar.navbar-default.navbar-static-top{background:var(--ink)!important;border:none;box-shadow:none;margin-bottom:0}
+        .navbar-nav>li>a{color:rgba(255,255,255,.75)!important;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;padding:22px 14px;transition:color .2s}
+        .navbar-nav>li>a:hover,.navbar-nav>li.active>a{color:var(--accent)!important}
+        .navbar-nav>li>a[style*="14A085"]{color:var(--accent)!important}
+        .welcome-band{background:var(--paper-warm);border-bottom:1px solid var(--rule);padding:28px 40px;text-align:center}
+        .welcome-band p{font-size:15px;font-weight:400;color:var(--ink-soft);max-width:760px;margin:0 auto;line-height:1.7}
+        .page-body{max-width:1500px;margin:0 auto;padding:48px 24px 80px;display:grid;grid-template-columns:160px 1fr;gap:32px;align-items:start}
+        .year-block{min-width:0}
+        .year-heading{display:flex;align-items:center;gap:14px;margin-bottom:20px}
+        .year-heading .year-label{font-family:'DM Serif Display',serif;font-size:32px;color:var(--ink);line-height:1}
+        .year-heading .year-label a{color:inherit;text-decoration:none}
+        .year-heading .talk-count{background:var(--accent-glow);color:var(--accent-dim);font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:500;letter-spacing:.04em;padding:4px 10px;border-radius:20px;border:1px solid rgba(20,160,133,.2)}
+        .talk-table-wrap{background:#fff;border:1px solid var(--rule);border-radius:10px;overflow:hidden;box-shadow:var(--shadow-sm)}
+        .talk-table{width:100%;border-collapse:collapse;font-size:13.5px}
+        .talk-table thead tr{background:var(--ink)}
+        .talk-table thead th{color:rgba(255,255,255,.75);font-family:'DM Sans',sans-serif;font-size:11px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;padding:13px 16px;text-align:left;white-space:nowrap}
+        .talk-table tbody tr{border-bottom:1px solid var(--rule);transition:background .15s}
+        .talk-table tbody tr:last-child{border-bottom:none}
+        .talk-table tbody tr:hover{background:var(--accent-glow)}
+        .talk-table td{padding:14px 16px;vertical-align:top;color:var(--ink-soft);line-height:1.55}
+        .talk-table td.date-cell{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--ink-muted);white-space:nowrap;padding-top:16px}
+        .talk-table td.title-cell{font-size:13.5px;font-weight:500;color:var(--ink);max-width:280px}
+        .talk-table td.venue-cell{font-size:12px;color:var(--ink-muted)}
+        .talk-table td.speaker-cell{font-weight:600;color:var(--ink);white-space:nowrap}
+        .conf-badge{display:inline-block;background:var(--paper-warm);border:1px solid var(--rule);border-radius:4px;font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:500;padding:2px 7px;color:var(--ink-soft);white-space:nowrap}
+        .conf-badge a{color:var(--accent);text-decoration:none;font-weight:600;margin-left:4px}
+        .conf-badge a:hover{color:var(--accent-dim);text-decoration:underline}
+        .role-pill{display:inline-block;background:rgba(196,147,10,.1);color:#8a6200;font-size:11px;font-weight:500;padding:2px 8px;border-radius:20px;border:1px solid rgba(196,147,10,.2);white-space:nowrap}
+        .archives-sidebar{position:sticky;top:24px}
+        .archives-card{background:#fff;border:1px solid var(--rule);border-radius:10px;overflow:hidden;box-shadow:var(--shadow-sm)}
+        .archives-card-header{background:var(--ink);padding:14px 18px}
+        .archives-card-header h4{font-family:'DM Sans',sans-serif;font-size:11px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:rgba(255,255,255,.65);margin:0}
+        .archives-list{list-style:none;padding:8px 0}
+        .archives-list li{border-bottom:1px solid var(--rule)}
+        .archives-list li:last-child{border-bottom:none}
+        .archives-list li a{display:flex;align-items:center;justify-content:space-between;padding:11px 18px;font-size:13.5px;font-weight:500;color:var(--ink-soft);text-decoration:none;transition:background .15s,color .15s}
+        .archives-list li a:hover{background:var(--accent-glow);color:var(--accent)}
+        .archives-list li a.active{color:var(--accent);font-weight:600}
+        .archives-list li a .chevron{font-size:10px;color:var(--ink-muted)}
+        .archives-list li a:hover .chevron{color:var(--accent)}
+        .scrollup{position:fixed;bottom:28px;right:28px;width:40px;height:40px;background:var(--ink);border-radius:8px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:16px;text-decoration:none;box-shadow:var(--shadow-md);transition:background .2s,transform .2s}
+        .scrollup:hover{background:var(--accent);transform:translateY(-2px)}
+        @media(max-width:900px){.page-body{grid-template-columns:1fr}.archives-sidebar{position:static;order:-1}.archives-list{display:flex;flex-wrap:wrap;gap:4px;padding:12px}.archives-list li{border:none}.archives-list li a{background:var(--paper-warm);border:1px solid var(--rule);border-radius:6px;padding:7px 14px;font-size:13px}.archives-list li a .chevron{display:none}}
+        @media(max-width:640px){.talk-table td,.talk-table th{padding:10px}.talk-table td.title-cell{max-width:180px}.welcome-band{padding:20px 16px}}
+    </style>
 </head>
-
-
 <body>
-    
-        &nbsp;
-           </div>
-           <div id="wrap">
-            <header>
-                <div class="navbar navbar-default navbar-static-top">
-                    <div class="container">
-                        <div class="navbar-header">
-                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                            </button>
-                          <a class="navbar-brand" href="../index.html"><img src="../img/logo.png" width="350" height="65" alt="logo"/></a>
-                        </div>
-                        <div class="navbar-collapse collapse ">
-                            <ul class="nav navbar-nav">
-                                <li class="active"><a href="../index.html">Home</a></li> 
-                                <li><a href="../research.html">Projects</a></li>
-                                <li><a href="../people.html">People</a></li>
-                                <!-- <li><a href="#">Publications</a></li> -->
-                                <li><a href="../talktt.html">Talk Series</a></li>
-                                <li><a href="../journal_group/journal_group.html"style="color: #14A085;" >Journal Group</a></li>
-                                <li><a href="../gallery.html">Gallery </a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </header><!-- end header -->
-        
-                <section id="inner-headline">
+<div id="wrapper">
+    <header>
+        <div class="navbar navbar-default navbar-static-top">
             <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <h2 class="pageTitle">Past talks: </h2>
-                    </div>
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="../index.html"><img src="../img/logo.png" width="350" height="65" alt="logo"/></a>
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li><a href="../index.html">Home</a></li>
+                        <li><a href="../research.html">Projects</a></li>
+                        <li><a href="../people.html">People</a></li>
+                        <li><a href="../talktt.html">Talk Series</a></li>
+                        <li class="active"><a href="../journal_group/journal_group.html" style="color: #14A085;">Journal Group</a></li>
+                        <li><a href="../gallery.html">Gallery</a></li>
+                    </ul>
                 </div>
             </div>
-            </section>
+        </div>
+    </header>
 
-           <section>
-                <h2 style="font-size: 15px;font-weight: 500;text-align: center;
-                margin-left: 100px; margin-right: 100px; margin-top: 20px;">
-                Welcome to the Machine Learning group at IIT Palakkad. We discuss concepts, techniques and 
-                recent advancements in Machine Learning and Artificial Intelligence. <!--To get added to the mailing list, 
-                    please send an email to mlgiitpkd@googlegroups.com.--> </h2>                  
+    <div class="welcome-band">
+        <p>Welcome to the Machine Learning group at IIT Palakkad. We discuss concepts, techniques and recent advancements in Machine Learning and Artificial Intelligence.</p>
+    </div>
 
-		    <!--
-                    <div class="col">
-                        <h3><a href="#">Upcoming talks:</a></h3>
-                            <table class="sortable resizable editable">
-                                <thead>
-                                    <tr>	 <th id="creation-date">Date</th>
-                                         <th id="cost">Title</th>
-                                         <th id="status">JOURNAL/CONFERENCE</th>
-                                          <th id="status">Speaker</th>
-                                          <th id="author">Speaker Info</th>
-                                         <th id="author">Venue</th>
-                                    </tr>	  
-                                </thead>
-                                <tfoot>
-                                </tfoot>
-                                <tbody>
-                                        <tr id="N938747839">
-                                        <td>Sep 13, 2021</td>
-                                        <td> Benchmarking Deep Learning Interpretability in Time Series Predictions [<a href="https://proceedings.neurips.cc/paper/2020/file/47a3893cc405396a5c30d91320572d6d-Paper.pdf" target="_blank">pdf</a>]<br></td>
-                                        <td>NIPS 2020</td>
-                                        <td>Abilasha</td>
-                                        <td>Research Scholar</td>
-                                        <td>Online Presentation via Google Meet </td>
-                                        </tr></tbody></table></div>
-			-->
+    <div class="page-body">
+        <aside class="archives-sidebar">
+            <div class="archives-card">
+                <div class="archives-card-header"><h4>Archives</h4></div>
+                <ul class="archives-list">
+                    <li><a href="journal_group.html">2026 <span class="chevron">▶</span></a></li>
+                    <li><a href="journal_group_2025.html">2025 <span class="chevron">▶</span></a></li>
+                    <li><a href="journal_group_2024.html">2024 <span class="chevron">▶</span></a></li>
+                    <li><a href="journal_group_2023.html">2023 <span class="chevron">▶</span></a></li>
+                    <li><a href="journal_group_2021.html" class="active">2021 <span class="chevron">▶</span></a></li>
+                    <li><a href="journal_group_2020.html">2020 <span class="chevron">▶</span></a></li>
+                </ul>
+            </div>
+        </aside>
 
-                    
-                    <div class="col">
-                        <h3><a href="#">2021</a></h3>
-                            <table class="sortable resizable editable">
-                                <thead>
-                                        <tr>
-                                        <th id="creation-date">Date</th>
-                                        <th id="cost">Title</th>
-                                        <th id="status">JOURNAL/CONFERENCE</th>
-                                        <th id="status">Speaker</th>
-                                        <th id="author">Speaker Info</th>
-                                        <th id="author">Venue</th>
-                                        </tr>
-                                </thead>
-                                <tfoot>
-                                </tfoot>
-                                <tbody> 
-				    <tr id="N938747839">
-				    <td>Oct 04, 2021</td>
-				    <td>Graph Contrastive Learning with Augmentations[<a href=https://papers.nips.cc/paper/2020/file/3fe230348e9a12c13120749e3f9fa4cd-Paper.pdf" target="_blank">pdf</a>]<br></td>
-				    <td>NIPS 2020</td>
-				    <td>Dr. Sahely</td>
-			            <td>Asst. Professor</td>
-				    <td>Online Presentation via Google Meet </td>
-				    </tr>
-		   
-				    <tr id="N938747839">
-				    <td>Sep 20, 2021</td>
-				    <td>You Only Look Once: Unified Real-Time Object Detection (YOLO)[<a href="https://ieeexplore.ieee.org/document/7780460" target="_blank">pdf</a>]<br></td>
-				    <td>IEEE CVPR 2016</td>
-				    <td>Vaishak</td>
-			            <td>Mtech DS</td>
-				    <td>Online Presentation via Google Meet </td>
-				    </tr>
-					    
-				    <tr id="N938747839">
-				    <td>Sep 13, 2021</td>
-				    <td>Benchmarking Deep Learning Interpretability in Time Series Predictions [<a href="https://proceedings.neurips.cc/paper/2020/file/47a3893cc405396a5c30d91320572d6d-Paper.pdf" target="_blank">pdf</a>]<br></td>
-				    <td>NIPS 2020</td>
-				    <td>Abilasha</td>
-				    <td>Research Scholar</td>
-				    <td>Online Presentation via Google Meet </td>
-				    </tr>
+        <div class="year-block">
+            <div class="year-heading">
+                <span class="year-label"><a href="#">2021</a></span>
+                <span class="talk-count">20 talks</span>
+            </div>
+            <div class="talk-table-wrap">
+                <table class="talk-table">
+                    <thead>
+                        <tr><th>Date</th><th>Title</th><th>Venue</th><th>Speaker</th><th>Role</th><th>Location</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td class="date-cell">Oct 04, 2021</td><td class="title-cell">Graph Contrastive Learning with Augmentations</td><td><span class="conf-badge">NIPS 2020 <a href="https://papers.nips.cc/paper/2020/file/3fe230348e9a12c13120749e3f9fa4cd-Paper.pdf" target="_blank">↗</a></span></td><td class="speaker-cell">Dr. Sahely</td><td><span class="role-pill">Asst. Professor</span></td><td class="venue-cell">Online via Google Meet</td></tr>
+                        <tr><td class="date-cell">Sep 20, 2021</td><td class="title-cell">You Only Look Once: Unified Real-Time Object Detection (YOLO)</td><td><span class="conf-badge">IEEE CVPR 2016 <a href="https://ieeexplore.ieee.org/document/7780460" target="_blank">↗</a></span></td><td class="speaker-cell">Vaishak</td><td><span class="role-pill">MTech DS</span></td><td class="venue-cell">Online via Google Meet</td></tr>
+                        <tr><td class="date-cell">Sep 13, 2021</td><td class="title-cell">Benchmarking Deep Learning Interpretability in Time Series Predictions</td><td><span class="conf-badge">NIPS 2020 <a href="https://proceedings.neurips.cc/paper/2020/file/47a3893cc405396a5c30d91320572d6d-Paper.pdf" target="_blank">↗</a></span></td><td class="speaker-cell">Abilasha</td><td><span class="role-pill">Research Scholar</span></td><td class="venue-cell">Online via Google Meet</td></tr>
+                        <tr><td class="date-cell">Sep 06, 2021</td><td class="title-cell">Trusted Multiview Classification</td><td><span class="conf-badge">ICLR 2021 <a href="https://openreview.net/pdf?id=OOsR8BzCnl5" target="_blank">↗</a></span></td><td class="speaker-cell">Pallavi</td><td><span class="role-pill">MTech DS</span></td><td class="venue-cell">Online via Google Meet</td></tr>
+                        <tr><td class="date-cell">Aug 30, 2021</td><td class="title-cell">Tempered Sigmoid Activations for Deep Learning with Differential Privacy</td><td><span class="conf-badge">AAAI 2021 <a href="https://ojs.aaai.org/index.php/AAAI/article/view/17123" target="_blank">↗</a></span></td><td class="speaker-cell">Yumna</td><td><span class="role-pill">Research Scholar</span></td><td class="venue-cell">Online via Google Meet</td></tr>
+                        <tr><td class="date-cell">Aug 23, 2021</td><td class="title-cell">Unsupervised Pre-training of a Deep LSTM-based Stacked Autoencoder for Multivariate Time Series Forecasting Problems</td><td><span class="conf-badge">Nature 2019 <a href="https://www.nature.com/articles/s41598-019-55320-6.pdf" target="_blank">↗</a></span></td><td class="speaker-cell">Sneha</td><td><span class="role-pill">MTech DS</span></td><td class="venue-cell">Online via Google Meet</td></tr>
+                        <tr><td class="date-cell">Aug 05, 2021</td><td class="title-cell">Modeling Concept Dependencies in a Scientific Corpus</td><td><span class="conf-badge">ACL 2016 <a href="https://aclanthology.org/P16-1082.pdf" target="_blank">↗</a></span></td><td class="speaker-cell">Shabana</td><td><span class="role-pill">Research Scholar</span></td><td class="venue-cell">Online via Google Meet</td></tr>
+                        <tr><td class="date-cell">Jul 22, 2021</td><td class="title-cell">Improving Unsupervised Image Clustering With Robust Learning (RUC)</td><td><span class="conf-badge">CVPR 2021 <a href="https://openaccess.thecvf.com/content/CVPR2021/papers/Park_Improving_Unsupervised_Image_Clustering_With_Robust_Learning_CVPR_2021_paper.pdf" target="_blank">↗</a></span></td><td class="speaker-cell">Gaurav</td><td><span class="role-pill">Research Scholar</span></td><td class="venue-cell">Online via Google Meet</td></tr>
+                        <tr><td class="date-cell">Jul 15, 2021</td><td class="title-cell">Combining Machine Learning and Process Engineering Physics towards Enhanced Accuracy and Explainability of Data-driven Models</td><td><span class="conf-badge">Comp. & Chem. Eng. 2020 <a href="https://www.sciencedirect.com/science/article/pii/S0098135419313675" target="_blank">↗</a></span></td><td class="speaker-cell">Dr. Mrinal</td><td><span class="role-pill">Asst. Professor</span></td><td class="venue-cell">Online via Google Meet</td></tr>
+                        <tr><td class="date-cell">Jul 08, 2021</td><td class="title-cell">Quantum Expectation-Maximization for Gaussian Mixture Models</td><td><span class="conf-badge">ICML 2020 <a href="http://proceedings.mlr.press/v119/kerenidis20a.html" target="_blank">↗</a></span></td><td class="speaker-cell">Dr. Sahely</td><td><span class="role-pill">Asst. Professor</span></td><td class="venue-cell">Online via Google Meet</td></tr>
+                        <tr><td class="date-cell">Jun 17, 2021</td><td class="title-cell">Differential Privacy Has Disparate Impact on Model Accuracy</td><td><span class="conf-badge">NIPS 2019 <a href="https://papers.nips.cc/paper/2019/file/fc0de4e0396fff257ea362983c2dda5a-Paper.pdf" target="_blank">↗</a></span></td><td class="speaker-cell">Yumna</td><td><span class="role-pill">Research Scholar</span></td><td class="venue-cell">Online via Google Meet</td></tr>
+                        <tr><td class="date-cell">Apr 19, 2021</td><td class="title-cell">Timeseries Anomaly Detection using Temporal Hierarchical One-Class Network</td><td><span class="conf-badge">NIPS 2020 <a href="https://proceedings.neurips.cc/paper/2020/file/97e401a02082021fd24957f852e0e475-Paper.pdf" target="_blank">↗</a></span></td><td class="speaker-cell">Abilasha</td><td><span class="role-pill">Research Scholar</span></td><td class="venue-cell">Online via Google Meet</td></tr>
+                        <tr><td class="date-cell">Apr 12, 2021</td><td class="title-cell">Reinforcement Learning for the Adaptive Scheduling of Educational Activities</td><td><span class="conf-badge">CHI 2020 <a href="https://dl.acm.org/doi/abs/10.1145/3313831.3376518" target="_blank">↗</a></span></td><td class="speaker-cell">Shabana</td><td><span class="role-pill">Research Scholar</span></td><td class="venue-cell">Online via Google Meet</td></tr>
+                        <tr><td class="date-cell">Apr 05, 2021</td><td class="title-cell">Self-Supervised Graph Transformer on Large-Scale Molecular Data</td><td><span class="conf-badge">NIPS 2020 <a href="https://papers.nips.cc/paper/2020/file/94aef38441efa3380a3bed3faf1f9d5d-Paper.pdf" target="_blank">↗</a></span></td><td class="speaker-cell">Shikha</td><td><span class="role-pill">Research Scholar</span></td><td class="venue-cell">Online via Google Meet</td></tr>
+                        <tr><td class="date-cell">Mar 22, 2021</td><td class="title-cell">VELDA: Relating an Image Tweet's Text and Images</td><td><span class="conf-badge">AAAI 2015 <a href="https://ojs.aaai.org/index.php/AAAI/article/view/9168" target="_blank">↗</a></span></td><td class="speaker-cell">Gaurav</td><td><span class="role-pill">Research Scholar</span></td><td class="venue-cell">Online via Google Meet</td></tr>
+                        <tr><td class="date-cell">Mar 15, 2021</td><td class="title-cell">Exploiting Kernel Sparsity and Entropy for Interpretable CNN Compression</td><td><span class="conf-badge">CVPR 2019 <a href="https://openaccess.thecvf.com/content_CVPR_2019/papers/Li_Exploiting_Kernel_Sparsity_and_Entropy_for_Interpretable_CNN_Compression_CVPR_2019_paper.pdf" target="_blank">↗</a></span></td><td class="speaker-cell">Rimmon</td><td><span class="role-pill">Research Scholar</span></td><td class="venue-cell">Online via Google Meet</td></tr>
+                        <tr><td class="date-cell">Mar 01, 2021</td><td class="title-cell">Shape and Time Distortion Loss for Training Deep Time Series Forecasting Models</td><td><span class="conf-badge">NIPS 2019 <a href="https://papers.nips.cc/paper/2019/file/466accbac9a66b805ba50e42ad715740-Paper.pdf" target="_blank">↗</a></span></td><td class="speaker-cell">Abilasha S</td><td><span class="role-pill">Research Scholar</span></td><td class="venue-cell">Online via Google Meet</td></tr>
+                        <tr><td class="date-cell">Feb 22, 2021</td><td class="title-cell">Differentially Private Bagging: Improved Utility and Cheaper Privacy than Subsample-and-Aggregate</td><td><span class="conf-badge">NIPS 2019 <a href="https://proceedings.neurips.cc/paper/2019/file/5dec707028b05bcbd3a1db5640f842c5-Paper.pdf" target="_blank">↗</a></span></td><td class="speaker-cell">Yumna</td><td><span class="role-pill">Research Scholar</span></td><td class="venue-cell">Online via Google Meet</td></tr>
+                        <tr><td class="date-cell">Feb 12, 2021</td><td class="title-cell">Sequencing Educational Content in Classrooms using Bayesian Knowledge Tracing</td><td><span class="conf-badge">LAK 2016 <a href="https://dl.acm.org/doi/10.1145/2883851.2883885" target="_blank">↗</a></span></td><td class="speaker-cell">Shabana</td><td><span class="role-pill">Research Scholar</span></td><td class="venue-cell">Online via Google Meet</td></tr>
+                        <tr><td class="date-cell">Feb 05, 2021</td><td class="title-cell">Small Data, Big Decisions: Model Selection in the Small-Data Regime</td><td><span class="conf-badge">ICML 2020 <a href="http://proceedings.mlr.press/v119/bornschein20a/bornschein20a.pdf" target="_blank">↗</a></span></td><td class="speaker-cell">Rimmon Bhosale</td><td><span class="role-pill">Research Scholar</span></td><td class="venue-cell">Online via Google Meet</td></tr>
+                        <tr><td class="date-cell">Jan 29, 2021</td><td class="title-cell">Hierarchical Generation of Molecular Graphs using Structural Motifs</td><td><span class="conf-badge">ICML 2020 <a href="https://arxiv.org/pdf/2002.03230.pdf" target="_blank">↗</a></span></td><td class="speaker-cell">Shikha Mallick</td><td><span class="role-pill">Research Scholar</span></td><td class="venue-cell">Online via Google Meet</td></tr>
+                        <tr><td class="date-cell">Jan 20, 2021</td><td class="title-cell">A Survey on Semi-, Self- and Unsupervised Learning for Image Classification</td><td><span class="conf-badge">Survey 2020 <a href="https://arxiv.org/abs/2002.08721" target="_blank">↗</a></span></td><td class="speaker-cell">Gaurav Jain</td><td><span class="role-pill">Research Scholar</span></td><td class="venue-cell">Online via Google Meet</td></tr>
+                        <tr><td class="date-cell">Jan 13, 2021</td><td class="title-cell">NeuralWaRP: Time Series Similarity with Warp Networks</td><td><span class="conf-badge">SIGKDD 2019 <a href="https://arxiv.org/pdf/1812.08306.pdf" target="_blank">↗</a></span></td><td class="speaker-cell">Abilasha S</td><td><span class="role-pill">Research Scholar</span></td><td class="venue-cell">Online via Google Meet</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
 
-				    <tr id="N938747839">
-				    <td>Sep 06, 2021</td>
-				    <td>Trusted Multiview Classification [<a href="https://openreview.net/pdf?id=OOsR8BzCnl5" target="_blank">pdf</a>]<br></td>
-				    <td>ICLR 2021</td>
-				    <td>Pallavi</td>
-				    <td>Mtech DS</td>
-				    <td>Online Presentation via Google Meet </td>
-				    </tr>
-		   
-				    <tr id="N938747839">
-				    <td>Aug 30, 2021</td>
-				    <td>Tempered Sigmoid Activations for Deep Learning with Differential Privacy [<a href="https://ojs.aaai.org/index.php/AAAI/article/view/17123" target="_blank">pdf</a>]<br></td>
-				    <td>AAAI 2021</td>
-				    <td>Yumna</td>
-				    <td>Research Scholar</td>
-				    <td>Online Presentation via Google Meet </td>
-				    </tr>
-				    
-		   
-                                    <tr id="N938747839">
-                                    <td>Aug 23, 2021</td>
-                                    <td> Unsupervised Pre-training of a Deep LSTM-based Stacked Autoencoder for Multivariate Time Series Forecasting Problems [<a href="https://www.nature.com/articles/s41598-019-55320-6.pdf" target="_blank">pdf</a>]<br></td>
-                                    <td>Nature 2019</td>
-                                    <td>Sneha</td>
-                                    <td>Mtech DS</td>
-                                    <td>Online Presentation via Google Meet </td>
-                                    </tr>
-                                    
-                                    <tr id="N938747839">
-                                    <td>Aug 05, 2021</td>
-                                    <td> Modeling concept dependencies in a scientific corpus [<a href="https://aclanthology.org/P16-1082.pdf" target="_blank">pdf</a>]<br></td>
-                                    <td>ACL 2016</td>
-                                    <td>Shabana</td>
-                                    <td>Research Scholar</td>
-                                    <td>Online Presentation via Google Meet </td>
-                                    </tr>
-                                            
-                                    <tr id="N938747839">
-                                    <td>July 22, 2021</td>
-                                    <td> Improving Unsupervised Image Clustering With Robust Learning(RUC) [<a href="https://openaccess.thecvf.com/content/CVPR2021/papers/Park_Improving_Unsupervised_Image_Clustering_With_Robust_Learning_CVPR_2021_paper.pdf" target="_blank">pdf</a>]<br></td>
-                                    <td>CVPR 2021</td>
-                                    <td>Gaurav</td>
-                                    <td>Research Scholar</td>
-                                    <td>Online Presentation via Google Meet </td>
-                                    </tr>
-                
-                                    <tr id="N938747839">
-                                    <td>July 15, 2021</td>
-                                    <td> Combining machine learning and process engineering physics towards enhanced accuracy and explainability of data-driven models [<a href="https://www.sciencedirect.com/science/article/pii/S0098135419313675" target="_blank">pdf</a>]<br></td>
-                                    <td>Computers & Chemical Engineering 2020</td>
-                                    <td>Dr. Mrinal</td>
-                                    <td>Asst. Professor</td>
-                                    <td>Online Presentation via Google Meet </td>
-                                    </tr>
-                                    
-                                    <tr id="N938747839">
-                                    <td>July 8, 2021</td>
-                                    <td> Quantum expectation-maximization for Gaussian mixture models [<a href="http://proceedings.mlr.press/v119/kerenidis20a.html" target="_blank">pdf</a>]<br></td>
-                                    <td>ICML 2020</td>
-                                    <td>Dr. Sahely</td>
-                                    <td>Asst. Professor</td>
-                                    <td>Online Presentation via Google Meet </td>
-                                    </tr>
-                                    
-                                    <tr id="N938747839">
-                                    <td>Jun 17, 2021</td>
-                                    <td> Differential Privacy Has Disparate Impact on Model Accuracy [<a href="https://papers.nips.cc/paper/2019/file/fc0de4e0396fff257ea362983c2dda5a-Paper.pdf" target="_blank">pdf</a>]<br></td>
-                                    <td>NIPS 2019</td>
-                                    <td>Yumna</td>
-                                    <td>Research Scholar</td>
-                                    <td>Online Presentation via Google Meet </td>
-                                    </tr>
-                                    
-                                    <tr id="N938747839">
-                                    <td>Apr 19, 2021</td>
-                                    <td> Timeseries Anomaly Detection usingTemporal Hierarchical One-Class Network [<a href="https://proceedings.neurips.cc/paper/2020/file/97e401a02082021fd24957f852e0e475-Paper.pdf" target="_blank">pdf</a>]<br></td>
-                                    <td>NIPS 2020</td>
-                                    <td>Abilasha</td>
-                                    <td>Research Scholar</td>
-                                    <td>Online Presentation via Google Meet </td>
-                                    </tr>
-                                    
-                                    <tr id="N938747839">
-                                    <td>Apr 12, 2021</td>
-                                    <td> Reinforcement Learning for the Adaptive Scheduling of Educational Activities [<a href="https://dl.acm.org/doi/abs/10.1145/3313831.3376518" target="_blank">pdf</a>]<br></td>
-                                    <td>CHI 2020</td>
-                                    <td>Shabana</td>
-                                    <td>Research Scholar</td>
-                                    <td>Online Presentation via Google Meet </td>
-                                    </tr>
-                                    
-                                    <tr id="N938747839">
-                                    <td>Apr 5, 2021</td>
-                                    <td> Self-Supervised Graph Transformer on Large-Scale Molecular Data [<a href="https://papers.nips.cc/paper/2020/file/94aef38441efa3380a3bed3faf1f9d5d-Paper.pdf" target="_blank">pdf</a>]<br></td>
-                                    <td>NIPS 2020</td>
-                                    <td>Shikha</td>
-                                    <td>Research Scholar</td>
-                                    <td>Online Presentation via Google Meet </td>
-                                    </tr>
-                                    
-                                    <tr id="N938747839">
-                                    <td>Mar 22, 2021</td>
-                                    <td> VELDA: Relating an Image Tweet’s Text and Images [<a href="https://ojs.aaai.org/index.php/AAAI/article/view/9168" target="_blank">pdf</a>]<br></td>
-                                    <td>AAAI 2015</td>
-                                    <td>Gaurav</td>
-                                    <td>Research Scholar</td>
-                                    <td>Online Presentation via Google Meet </td>
-                                    </tr>
-                
-                                    <tr id="N938747839">
-                                    <td>Mar 15, 2021</td>
-                                    <td> Exploiting Kernel Sparsity and Entropy for Interpretable CNN Compression [<a href="https://openaccess.thecvf.com/content_CVPR_2019/papers/Li_Exploiting_Kernel_Sparsity_and_Entropy_for_Interpretable_CNN_Compression_CVPR_2019_paper.pdf" target="_blank">pdf</a>]<br></td>
-                                    <td>CVPR 2019</td>
-                                    <td>Rimmon</td>
-                                    <td>Research Scholar</td>
-                                    <td>Online Presentation via Google Meet </td>
-                                    </tr>
-                                    
-                                    <tr id="N938747839">
-                                    <td>Mar 1, 2021</td>
-                                    <td>Shape and Time Distortion Loss for Training Deep Time Series Forecasting Models [<a href="https://papers.nips.cc/paper/2019/file/466accbac9a66b805ba50e42ad715740-Paper.pdf" target="_blank">pdf</a>]<br></td>
-                                    <td>NIPS 2019</td>
-                                    <td>Abilasha S</td>
-                                    <td>Research Scholar</td>
-                                    <td>Online Presentation via Google Meet </td>
-                                    </tr>
-                                    
-                                    <tr id="N938747839">
-                                    <td>Feb 22, 2021</td>
-                                    <td>Differentially Private Bagging: Improved utility and cheaper privacy than subsample-and-aggregate [<a href="https://proceedings.neurips.cc/paper/2019/file/5dec707028b05bcbd3a1db5640f842c5-Paper.pdf" target="_blank">pdf</a>]<br></td>
-                                    <td>NIPS 2019</td>
-                                    <td>Yumna</td>
-                                    <td>Research Scholar</td>
-                                    <td>Online Presentation via Google Meet </td>
-                                    </tr>
-                                    
-                                    <tr id="N938747839">
-                                    <td>Feb 12, 2021</td>
-                                    <td>Sequencing educational content in classrooms using Bayesian knowledge tracing [<a href="https://dl.acm.org/doi/10.1145/2883851.2883885" target="_blank">pdf</a>]<br></td>
-                                    <td>LAK 2016</td>
-                                    <td>Shabana</td>
-                                        <td>Research Scholar</td>
-                                    <td>Online Presentation via Google Meet </td>
-                                    </tr>
-                                    
-                                    <tr id="N938747839">
-                                    <td>Feb 5, 2021</td>
-                                    <td>Small Data, Big Decisions: Model Selection in the Small-Data Regime [<a href="http://proceedings.mlr.press/v119/bornschein20a/bornschein20a.pdf" target="_blank">pdf</a>]<br></td>
-                                    <td>ICML 2020</td>
-                                    <td>Rimmon Bhosale</td>
-                                    <td>Research Scholar</td>
-                                    <td>Online Presentation via Google Meet</td>
-                                    </tr>
-                                    
-                                    <tr id="N938747839">
-                                    <td>Jan 29, 2021</td>
-                                    <td>Hierarchical Generation of Molecular Graphs using Structural Motifs [<a href="https://arxiv.org/pdf/2002.03230.pdf" target="_blank">pdf</a>]<br></td>
-                                    <td>ICML 2020</td>
-                                    <td>Shikha Mallick</td>
-                                    <td>Research Scholar</td>
-                                    <td>Online Presentation via Google Meet</td>
-                                    </tr>
-                                    
-                                    <tr id="N938747839">
-                                    <td>Jan 20, 2021</td>
-                                    <td> A Survey on Semi-, Self- and Unsupervised Learning for Image Classification [<a href="https://arxiv.org/abs/2002.08721" target="_blank">pdf</a>]<br></td>
-                                    <td>Survey paper 2020</td>
-                                    <td>Gaurav Jain</td>
-                                    <td>Research Scholar</td>
-                                    <td>Online Presentation via Google Meet</td>
-                                    </tr>
-                                    
-                                    <tr id="N938747839">
-                                    <td>Jan 13, 2021</td>
-                                    <td>NeuralWaRP: Time series similarity with Warp networks [<a href="https://arxiv.org/pdf/1812.08306.pdf" target="_blank">pdf</a>]<br></td>
-                                    <td>SIGKDD 2019</td>
-                                    <td>Abilasha S</td>
-                                    <td>Research Scholar</td>
-                                    <td>Online Presentation via Google Meet</td>
-                                    </tr>
-                                            
-                                                      
-                                                      
-                                                  </tbody>
-                                              </table>
-                                          </div>
-                                  
-                                      <div class="content">
-                                      <div class="col">
-                                        <h3><a href="journal_group.html">2026 Schedule</a></h3>
-										<h3><a href="journal_group_2025.html">2025 Archives</a></h3>
-										<h3><a href="journal_group_2024.html">2024 Archives</a></h3>
-										<h3><a href="journal_group_2023.html">2023 Archives</a></h3>
-                                        <h3><a href="journal_group_2021.html" style="color: #14A085;">2021 Archives</a></h3>
-					  					<h3><a href="journal_group_2020.html">2020 Archives</a></h3>
-									  </div>
-                                      </div>
-                                      
-                                 </p></div></div> <!-- /.section -->
-                                </div> <!-- /#wrap -->
-                                  
-                              <!--   
-                                  
-                                  
-                                  <iframe scrolling="no" allowtransparency="true" src="machine_learning_css/widget_iframe.html" title="Twitter settings iframe" style="display: none;" frameborder="0"></iframe><iframe id="rufous-sandbox" scrolling="no" allowtransparency="true" allowfullscreen="true" style="position: absolute; visibility: hidden; display: none; width: 0px; height: 0px; padding: 0px; border: medium none;" title="Twitter analytics iframe" frameborder="0"></iframe></body></html>
-                                  
-                                      © 2019 GitHub, Inc.
-                                      Terms
-                                      Privacy
-                                      Security
-                                      Status
-                                      Help
-                                  
-                                      Contact GitHub
-                                      Pricing
-                                      API
-                                      Training
-                                      Blog
-                                      About-->
-                                  
-
-                        
-    </section>
-    <script src="../js/jquery.js"></script>
+<a href="#" class="scrollup"><i class="fa fa-angle-up"></i></a>
+<script src="../js/jquery.js"></script>
 <script src="../js/jquery.easing.1.3.js"></script>
 <script src="../js/bootstrap.min.js"></script>
 <script src="../js/jquery.fancybox.pack.js"></script>
-<script src="../js/jquery.fancybox-media.js"></script> 
+<script src="../js/jquery.fancybox-media.js"></script>
 <script src="../js/portfolio/jquery.quicksand.js"></script>
 <script src="../js/portfolio/setting.js"></script>
 <script src="../js/jquery.flexslider.js"></script>
 <script src="../js/animate.js"></script>
-       </body>
-       </html>
+</body>
+</html>
