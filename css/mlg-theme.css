@@ -1,0 +1,474 @@
+/* ============================================================
+   MLG @ IIT PALAKKAD — UNIFIED THEME
+   Paper & Ink / Teal design system.
+   Loaded LAST so it overrides the legacy Bootstrap template CSS.
+   Restyles the existing markup classes site-wide — no content
+   changes required on the pages themselves.
+   ============================================================ */
+
+/* ─── DESIGN TOKENS ─────────────────────────────── */
+:root {
+    --ink:        #0f1923;
+    --ink-soft:   #3a4a58;
+    --ink-muted:  #7a8fa0;
+    --paper:      #f7f5f0;
+    --paper-warm: #ede9e1;
+    --accent:     #14A085;
+    --accent-dim: #0d7a65;
+    --accent-glow:rgba(20,160,133,.12);
+    --gold:       #c4930a;
+    --rule:       #d8d2c6;
+    --radius:     6px;
+    --shadow-sm:  0 1px 4px rgba(15,25,35,.08);
+    --shadow-md:  0 4px 20px rgba(15,25,35,.10);
+    --shadow-lg:  0 12px 40px rgba(15,25,35,.14);
+}
+
+/* ─── BASE ──────────────────────────────────────── */
+body {
+    background: var(--paper) !important;
+    color: var(--ink) !important;
+    font-family: 'DM Sans', sans-serif !important;
+    font-size: 15px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+}
+#wrapper { background: var(--paper); }
+a { color: var(--accent-dim); }
+a:hover, a:focus { color: var(--accent); }
+
+h1, h2, h3, h4, h5 { font-family: 'DM Serif Display', serif; }
+
+/* ─── NAVBAR ────────────────────────────────────────────────
+   ONE identical header on every page, matching the Journal Group
+   page. All values forced with !important so they win over the
+   per-page legacy sheets (style.css / styles.css / styles22.css).
+   ──────────────────────────────────────────────────────────── */
+.navbar.navbar-default.navbar-static-top,
+header .navbar.navbar-default {
+    background: var(--ink) !important;
+    border: none !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    margin-bottom: 0 !important;
+}
+header .navbar { min-height: 70px !important; padding: 18px 0 !important; }
+
+/* Brand / logo — uniform natural size on every page */
+.navbar.navbar-default .navbar-brand,
+.navbar-default .navbar-brand,
+header .navbar-default .navbar-brand {
+    height: auto !important;
+    margin-top: 13px !important;
+    padding: 0 0 0 15px !important;
+}
+.navbar-brand img {
+    height: 65px !important;
+    width: auto !important;
+    filter: brightness(1.1);
+}
+
+/* Menu — right aligned, on its own row (exactly the Journal Group layout) */
+header .navbar-collapse ul.navbar-nav,
+header .navbar-nav { float: right !important; margin-right: 0 !important; }
+header .navbar-nav > li { padding-top: 70px !important; padding-bottom: 12px !important; }
+
+.navbar-default .navbar-nav > li > a,
+header .navbar-nav > li > a {
+    color: rgba(255,255,255,.78) !important;
+    font-family: 'DM Sans', sans-serif !important;
+    font-size: 13px !important;
+    font-weight: 500 !important;
+    letter-spacing: .06em !important;
+    text-transform: uppercase !important;
+    line-height: 30px !important;
+    margin-left: 20px !important;
+    padding: 5px 0 6px !important;
+    background: transparent !important;
+    transition: color .2s;
+}
+.navbar-default .navbar-nav > li > a:hover,
+.navbar-default .navbar-nav > li > a:focus,
+.navbar-default .navbar-nav > li.active > a,
+header .navbar-nav > li.active > a {
+    color: var(--accent) !important;
+    background: transparent !important;
+}
+.navbar-default .navbar-toggle { border-color: rgba(255,255,255,.3); margin-top: 24px; }
+.navbar-default .navbar-toggle .icon-bar { background: #fff; }
+.navbar-default .navbar-toggle:hover,
+.navbar-default .navbar-toggle:focus { background: rgba(255,255,255,.08); }
+
+@media (max-width: 767px) {
+    header .navbar-nav > li { padding-top: 0 !important; }
+    header .navbar-nav > li > a { margin-left: 0 !important; padding: 10px 15px !important; }
+}
+
+/* ─── HERO STRIP (#inner-headline) ──────────────── */
+#inner-headline {
+    background: linear-gradient(135deg, #0f1923 0%, #1a2e3b 60%, #0d2e28 100%) !important;
+    padding: 56px 0 44px !important;
+    position: relative;
+    overflow: hidden;
+    border: none !important;
+}
+#inner-headline::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+        -45deg, transparent, transparent 24px,
+        rgba(20,160,133,.04) 24px, rgba(20,160,133,.04) 25px);
+}
+#inner-headline .container { position: relative; z-index: 1; }
+#inner-headline .pageTitle,
+#inner-headline .centered-text,
+#inner-headline h2 {
+    font-family: 'DM Serif Display', serif !important;
+    font-size: clamp(28px, 4vw, 44px) !important;
+    color: #fff !important;
+    letter-spacing: -.01em;
+    margin: 0 !important;
+    text-indent: 0 !important;
+    display: block !important;
+}
+#inner-headline .pageTitle::after,
+#inner-headline .centered-text::after {
+    content: '';
+    display: block;
+    width: 52px; height: 3px;
+    background: var(--accent);
+    margin-top: 12px;
+    border-radius: 2px;
+}
+
+/* ─── WELCOME / CALL-TO-ACTION BAND (index) ─────── */
+.callaction {
+    background: var(--paper-warm) !important;
+    border-bottom: 1px solid var(--rule);
+    border-top: 1px solid var(--rule);
+    padding: 40px 0 !important;
+    box-shadow: none !important;
+}
+.callaction h1, .callaction .aligncenter h1 {
+    font-family: 'DM Serif Display', serif !important;
+    color: var(--ink) !important;
+    font-size: clamp(26px, 3.5vw, 38px) !important;
+    margin-bottom: 14px;
+}
+.callaction .aligncenter {
+    color: var(--ink-soft) !important;
+    max-width: 880px;
+    margin: 0 auto;
+    line-height: 1.75;
+    text-align: center;
+    font-size: 15.5px;
+}
+
+/* ─── SECTION HEADINGS ──────────────────────────── */
+.about-logo .aligncenter h2,
+.about-logo h2,
+.section-header .section-title,
+.publication-year {
+    font-family: 'DM Serif Display', serif !important;
+    color: var(--ink) !important;
+}
+.section-header { text-align: center; margin: 14px 0 34px; }
+.section-header .section-title {
+    font-size: clamp(24px, 3vw, 34px) !important;
+    display: inline-block;
+    text-transform: none !important;
+    letter-spacing: 0 !important;
+}
+.section-header .section-title::after {
+    content: '';
+    display: block;
+    width: 48px; height: 3px;
+    background: var(--accent);
+    margin: 12px auto 0;
+    border-radius: 2px;
+}
+.about-logo h3 { font-size: 22px !important; color: var(--ink) !important; }
+.about-logo h3 .color { color: var(--accent) !important; }
+.about-logo p { color: var(--ink-soft) !important; }
+.btn-color {
+    background: var(--accent) !important;
+    border: none !important;
+    color: #fff !important;
+    border-radius: var(--radius) !important;
+    font-weight: 600;
+    letter-spacing: .04em;
+    padding: 10px 22px !important;
+    transition: background .2s, transform .2s;
+}
+.btn-color:hover { background: var(--accent-dim) !important; transform: translateY(-2px); }
+
+/* ─── PROJECT CARDS (.portfolio-item on index + research) ─── */
+.about .portfolio-item,
+#content .portfolio-item {
+    background: #fff;
+    border: 1px solid var(--rule);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    padding: 0 0 16px;
+    margin-bottom: 26px;
+    transition: transform .2s, box-shadow .2s, border-color .2s;
+}
+.about .portfolio-item:hover,
+#content .portfolio-item:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--accent);
+}
+.about .portfolio-item img,
+#content .portfolio-item img {
+    display: block;
+    width: 100%;
+    height: auto;
+    margin-bottom: 14px;
+}
+.about .portfolio-item h3,
+#content .portfolio-item h3 {
+    font-family: 'DM Serif Display', serif !important;
+    font-size: 18px !important;
+    line-height: 1.3;
+    color: var(--ink) !important;
+    padding: 0 18px;
+    margin: 0 0 8px;
+}
+.about .portfolio-item h3 a,
+#content .portfolio-item h3 a { color: var(--ink) !important; }
+.about .portfolio-item p,
+#content .portfolio-item p {
+    color: var(--ink-soft) !important;
+    font-size: 13.5px;
+    padding: 0 18px;
+}
+.about .portfolio-item p[align="right"],
+#content .portfolio-item p[align="right"] {
+    color: var(--accent-dim) !important;
+    font-weight: 600;
+    font-size: 12.5px;
+}
+.about .portfolio-item p a,
+#content .portfolio-item p a { color: var(--accent) !important; }
+
+/* ─── PEOPLE CARDS (.team-wrapper) ──────────────── */
+.team-wrapper {
+    background: #fff !important;
+    border: 1px solid var(--rule);
+    border-radius: 12px !important;
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    margin-bottom: 28px;
+    transition: transform .2s, box-shadow .2s, border-color .2s;
+}
+.team-wrapper:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--accent);
+}
+.team-wrapper .team-inner {
+    border-radius: 0 !important;
+    height: 230px !important;
+}
+.team-wrapper .description {
+    padding: 16px 16px 20px;
+    text-align: center;
+    position: relative;
+}
+.team-wrapper .description h3 {
+    font-family: 'DM Serif Display', serif !important;
+    font-size: 18px !important;
+    color: var(--ink) !important;
+    margin: 4px 0 6px;
+}
+.team-wrapper .description h5,
+.team-wrapper .description h5 strong {
+    color: var(--accent-dim) !important;
+    font-family: 'JetBrains Mono', monospace !important;
+    font-size: 11px !important;
+    font-weight: 500 !important;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+}
+.team-wrapper .description p {
+    color: var(--ink-muted) !important;
+    font-size: 13px;
+    margin-top: 8px;
+}
+.team-wrapper .description a .fa-link,
+.team-wrapper .description a {
+    color: var(--accent) !important;
+}
+
+/* ─── PUBLICATIONS ──────────────────────────────── */
+#content-section { padding: 50px 0 70px; }
+.publication-year {
+    font-size: 30px !important;
+    color: var(--ink) !important;
+    margin: 36px 0 6px;
+}
+#content-section hr { border-top: 2px solid var(--accent); opacity: .5; margin-top: 6px; }
+.publication-list { list-style: none; padding: 0; }
+.publication-list li {
+    background: #fff;
+    border: 1px solid var(--rule);
+    border-left: 4px solid var(--accent);
+    border-radius: 8px;
+    padding: 16px 20px;
+    margin-bottom: 14px;
+    box-shadow: var(--shadow-sm);
+    line-height: 1.6;
+    transition: transform .15s, box-shadow .15s;
+}
+.publication-list li:hover { transform: translateX(3px); box-shadow: var(--shadow-md); }
+.publication-list li strong { color: var(--ink); font-size: 15px; }
+.publication-list li em { color: var(--accent-dim); font-style: normal; font-weight: 600; }
+.publication-list li span { color: var(--ink-muted); font-size: 13px; }
+.publication-list li a { color: var(--accent) !important; font-weight: 600; }
+
+/* ─── TALK SERIES (talktt) ──────────────────────── */
+#portfolio { background: var(--paper); }
+#portfolio .centered-text {
+    color: var(--ink-soft) !important;
+    text-indent: 0 !important;
+    max-width: 900px;
+    margin: 0 auto !important;
+    display: block !important;
+    text-align: center;
+    font-size: 15px;
+    line-height: 1.75;
+}
+.portfolio-filter {
+    background: #fff !important;
+    border: 1px solid var(--rule);
+    border-radius: 40px !important;
+    display: inline-flex !important;
+    justify-content: center !important;
+    flex-wrap: wrap;
+    padding: 6px !important;
+    margin: 0 auto 36px !important;
+    box-shadow: var(--shadow-sm);
+}
+.portfolio-filter li { margin: 0 !important; }
+.portfolio-filter a {
+    color: var(--ink-soft) !important;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    padding: 8px 18px !important;
+    border-radius: 30px !important;
+}
+.portfolio-filter a:hover,
+.portfolio-filter a.active {
+    background: var(--accent) !important;
+    color: #fff !important;
+}
+.portfolio-item-inner {
+    background: linear-gradient(160deg, #14242f 0%, #0f1923 100%) !important;
+    border: 1px solid rgba(255,255,255,.06);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+    padding-bottom: 16px;
+    transition: transform .2s, box-shadow .2s;
+}
+.portfolio-item-inner:hover { transform: translateY(-5px); box-shadow: var(--shadow-lg); }
+.portfolio-item-inner > img.img-responsive {
+    width: 100%;
+    height: 230px;
+    object-fit: cover;
+    margin-bottom: 12px;
+}
+.portfolio-item-inner b { color: #fff; font-size: 16px; padding: 0 16px; }
+.portfolio-item-inner,
+.portfolio-item-inner a,
+.portfolio-item-inner font,
+.portfolio-item-inner span,
+.portfolio-item-inner .additional-info,
+.portfolio-item-inner .additional-info a { color: rgba(255,255,255,.82) !important; }
+.portfolio-item-inner b, .portfolio-item-inner a b { padding-left: 16px; }
+.portfolio-info { padding: 6px 16px 0; }
+.portfolio-info h6 {
+    color: var(--accent) !important;
+    font-family: 'JetBrains Mono', monospace !important;
+    font-size: 11px !important;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+    margin: 6px 0;
+}
+.portfolio-info .preview {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px; height: 34px;
+    margin-top: 10px;
+    background: var(--accent);
+    border-radius: 50%;
+}
+.portfolio-info .preview .fa-eye { color: #fff !important; }
+.portfolio-info .preview:hover { background: var(--accent-dim); }
+
+/* Talk logos band */
+#logo-section { background: var(--paper-warm) !important; border-top: 1px solid var(--rule); }
+
+/* ─── FOOTER ────────────────────────────────────── */
+footer {
+    background: var(--ink) !important;
+    color: rgba(255,255,255,.6) !important;
+    border-top: 3px solid var(--accent);
+    padding-top: 48px !important;
+}
+footer .widgetheading,
+footer h3.widgetheading,
+footer h5.widgetheading {
+    font-family: 'DM Serif Display', serif !important;
+    color: #fff !important;
+    font-size: 18px !important;
+    margin-bottom: 14px;
+}
+footer address, footer p, footer .widget p { color: rgba(255,255,255,.6) !important; }
+footer address strong { color: var(--accent) !important; }
+footer a { color: rgba(255,255,255,.75) !important; }
+footer a:hover { color: var(--accent) !important; }
+#sub-footer {
+    background: #0a1119 !important;
+    margin-top: 36px;
+    padding: 16px 0;
+}
+#sub-footer .copyright p, #sub-footer p { color: rgba(255,255,255,.45) !important; font-size: 12px; }
+.social-network li a {
+    color: rgba(255,255,255,.7) !important;
+    transition: color .2s, transform .2s;
+}
+.social-network li a:hover { color: var(--accent) !important; transform: translateY(-2px); }
+
+/* ─── SCROLL TO TOP ─────────────────────────────── */
+.scrollup {
+    background: var(--ink) !important;
+    border-radius: 8px !important;
+    width: 42px !important;
+    height: 42px !important;
+    line-height: 42px !important;
+    box-shadow: var(--shadow-md);
+    transition: background .2s, transform .2s;
+}
+.scrollup:hover { background: var(--accent) !important; transform: translateY(-2px); }
+.scrollup .fa { color: #fff !important; }
+
+/* ─── FLEXSLIDER CAPTION (index hero) ───────────── */
+.flex-caption .item_introtext strong {
+    font-family: 'DM Serif Display', serif !important;
+    letter-spacing: -.01em;
+}
+
+/* ─── RESPONSIVE ────────────────────────────────── */
+@media (max-width: 767px) {
+    .navbar-default .navbar-nav > li > a {
+        padding-top: 12px !important;
+        padding-bottom: 12px !important;
+    }
+    #inner-headline { padding: 40px 0 32px !important; }
+}
