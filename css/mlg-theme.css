@@ -629,3 +629,275 @@ footer a:hover { color: var(--accent) !important; }
     }
     #inner-headline { padding: 40px 0 32px !important; }
 }
+
+/* ─────────────────────────────────────────
+   NEWS CAROUSEL
+   ───────────────────────────────────────── */
+
+.news-section {
+    padding: 70px 0 80px;
+    background: var(--paper);
+}
+
+.news-heading {
+    text-align: center;
+    margin-bottom: 45px;
+}
+
+.news-heading h2 {
+    font-family: 'DM Serif Display', serif !important;
+    font-size: 34px !important;
+    color: var(--ink) !important;
+    margin: 0 0 10px;
+}
+
+.news-heading p {
+    color: var(--ink-muted);
+    font-size: 14px;
+    margin: 0;
+}
+
+
+/* ─── CAROUSEL ─── */
+
+.news-carousel {
+    position: relative;
+    max-width: 1050px;
+    margin: 0 auto;
+    padding: 0 55px;
+}
+
+
+/* ─── SLIDES ─── */
+
+.news-slides {
+    position: relative;
+    min-height: 360px;
+}
+
+.news-slide {
+    display: none;
+    grid-template-columns: 48% 1fr;
+    gap: 55px;
+    align-items: center;
+    width: 100%;
+}
+
+.news-slide.active {
+    display: grid;
+}
+
+
+/* ─── IMAGE ─── */
+
+.news-image {
+    width: 100%;
+    height: 330px;
+    overflow: hidden;
+    border-radius: 6px;
+}
+
+.news-image img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+}
+
+
+/* ─── CONTENT ─── */
+
+.news-content {
+    padding-right: 20px;
+}
+
+.news-date {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: .08em;
+    color: var(--accent);
+    font-weight: 500;
+    margin-bottom: 13px;
+}
+
+.news-content h3 {
+    font-family: 'DM Serif Display', serif !important;
+    font-size: 29px !important;
+    line-height: 1.3;
+    color: var(--ink) !important;
+    margin: 0 0 16px;
+}
+
+.news-content p {
+    color: var(--ink-soft) !important;
+    font-size: 14px;
+    line-height: 1.8;
+    margin: 0 0 20px;
+}
+
+.news-link {
+    display: inline-block;
+    color: var(--accent) !important;
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: color .2s ease;
+}
+
+.news-link:hover {
+    color: var(--accent-dim) !important;
+    text-decoration: none;
+}
+
+.news-link span {
+    margin-left: 5px;
+}
+
+
+/* ─── NAVIGATION ARROWS ─── */
+
+.news-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+
+    width: 38px;
+    height: 38px;
+
+    border: 1px solid var(--rule);
+    border-radius: 50%;
+
+    background: transparent;
+    color: var(--ink-soft);
+
+    font-size: 18px;
+
+    cursor: pointer;
+
+    transition:
+        background .2s ease,
+        color .2s ease,
+        border-color .2s ease;
+}
+
+.news-arrow:hover {
+    background: var(--accent);
+    color: #fff;
+    border-color: var(--accent);
+}
+
+.news-prev {
+    left: 0;
+}
+
+.news-next {
+    right: 0;
+}
+
+
+/* ─── DOTS ─── */
+
+.news-dots {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 9px;
+    margin-top: 30px;
+}
+
+.news-dot {
+    width: 7px;
+    height: 7px;
+
+    padding: 0;
+    border: none;
+    border-radius: 50%;
+
+    background: var(--rule);
+
+    cursor: pointer;
+
+    transition:
+        width .2s ease,
+        background .2s ease;
+}
+
+.news-dot.active {
+    width: 22px;
+    border-radius: 5px;
+    background: var(--accent);
+}
+
+
+/* ─── MOBILE ─── */
+
+@media (max-width: 767px) {
+
+    .news-section {
+        padding: 50px 0 60px;
+    }
+
+    .news-heading {
+        margin-bottom: 30px;
+    }
+
+    .news-heading h2 {
+        font-size: 28px !important;
+    }
+
+    .news-heading p {
+        font-size: 13px;
+    }
+
+    .news-carousel {
+        padding: 0 5px;
+    }
+
+    .news-slides {
+        min-height: 0;
+    }
+
+    .news-slide,
+    .news-slide.active {
+        display: block;
+    }
+
+    .news-slide {
+        padding: 0 10px;
+    }
+
+    .news-image {
+        width: 100%;
+        height: 230px;
+        margin-bottom: 25px;
+    }
+
+    .news-content {
+        padding-right: 0;
+        padding-bottom: 10px;
+    }
+
+    .news-content h3 {
+        font-size: 24px !important;
+    }
+
+    .news-content p {
+        font-size: 14px;
+        line-height: 1.7;
+    }
+
+    .news-arrow {
+        width: 32px;
+        height: 32px;
+        font-size: 16px;
+    }
+
+    .news-prev {
+        left: -5px;
+    }
+
+    .news-next {
+        right: -5px;
+    }
+
+}
