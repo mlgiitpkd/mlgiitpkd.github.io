@@ -31,15 +31,278 @@
 <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 <![endif]-->
 
+<!-- ================= NEWS CAROUSEL CSS ================= -->
+
+<style>
+
+.news-section {
+    padding: 65px 0 75px;
+    background: var(--paper);
+}
+
+.news-heading {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.news-heading h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 34px;
+    color: var(--ink);
+    margin: 0 0 10px;
+}
+
+.news-heading p {
+    color: var(--ink-muted);
+    font-size: 14px;
+    margin: 0;
+}
+
+
+/* Carousel */
+
+.news-carousel {
+    position: relative;
+    max-width: 1050px;
+    margin: 0 auto;
+    padding: 0 55px;
+}
+
+.news-slides {
+    position: relative;
+    min-height: 350px;
+}
+
+
+/* Individual news item */
+
+.news-slide {
+    display: none;
+    grid-template-columns: 48% 1fr;
+    gap: 55px;
+    align-items: center;
+    width: 100%;
+}
+
+.news-slide.active {
+    display: grid;
+}
+
+
+/* Image */
+
+.news-image {
+    width: 100%;
+    height: 320px;
+    overflow: hidden;
+    border-radius: 6px;
+}
+
+.news-image img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+}
+
+
+/* News text */
+
+.news-content {
+    padding-right: 15px;
+}
+
+.news-date {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: .08em;
+    color: var(--accent);
+    font-weight: 500;
+    margin-bottom: 13px;
+}
+
+.news-content h3 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 29px;
+    line-height: 1.3;
+    color: var(--ink);
+    margin: 0 0 16px;
+}
+
+.news-content p {
+    color: var(--ink-soft);
+    font-size: 14px;
+    line-height: 1.8;
+    margin: 0 0 20px;
+}
+
+.news-link {
+    display: inline-block;
+    color: var(--accent) !important;
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.news-link:hover {
+    color: var(--accent-dim) !important;
+    text-decoration: none;
+}
+
+
+/* Arrows */
+
+.news-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+
+    width: 38px;
+    height: 38px;
+
+    border: 1px solid var(--rule);
+    border-radius: 50%;
+
+    background: transparent;
+    color: var(--ink-soft);
+
+    font-size: 18px;
+
+    cursor: pointer;
+
+    transition:
+        background .2s ease,
+        color .2s ease,
+        border-color .2s ease;
+}
+
+.news-arrow:hover {
+    background: var(--accent);
+    color: #fff;
+    border-color: var(--accent);
+}
+
+.news-prev {
+    left: 0;
+}
+
+.news-next {
+    right: 0;
+}
+
+
+/* Dots */
+
+.news-dots {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 9px;
+    margin-top: 28px;
+}
+
+.news-dot {
+    width: 7px;
+    height: 7px;
+
+    padding: 0;
+    border: none;
+    border-radius: 50%;
+
+    background: var(--rule);
+
+    cursor: pointer;
+
+    transition:
+        width .2s ease,
+        background .2s ease;
+}
+
+.news-dot.active {
+    width: 22px;
+    border-radius: 5px;
+    background: var(--accent);
+}
+
+
+/* Mobile */
+
+@media (max-width: 767px) {
+
+    .news-section {
+        padding: 50px 0 60px;
+    }
+
+    .news-heading h2 {
+        font-size: 28px;
+    }
+
+    .news-carousel {
+        padding: 0 8px;
+    }
+
+    .news-slides {
+        min-height: 0;
+    }
+
+    .news-slide,
+    .news-slide.active {
+        display: block;
+    }
+
+    .news-slide {
+        padding: 0 8px;
+    }
+
+    .news-image {
+        width: 100%;
+        height: 230px;
+        margin-bottom: 25px;
+    }
+
+    .news-content {
+        padding-right: 0;
+    }
+
+    .news-content h3 {
+        font-size: 24px;
+    }
+
+    .news-content p {
+        font-size: 14px;
+        line-height: 1.7;
+    }
+
+    .news-arrow {
+        width: 32px;
+        height: 32px;
+        font-size: 16px;
+    }
+
+    .news-prev {
+        left: -5px;
+    }
+
+    .news-next {
+        right: -5px;
+    }
+
+}
+
+</style>
+
 </head>
 
 <body>
 
 <div id="wrapper">
 
-	<!-- start header -->
-	<header>
+    <!-- ================= HEADER ================= -->
+
+    <header>
+
         <div class="navbar navbar-default navbar-static-top">
+
             <div class="container">
 
                 <div class="navbar-header">
@@ -49,21 +312,26 @@
                             data-toggle="collapse"
                             data-target=".navbar-collapse"
                             aria-expanded="false">
+
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
+
                     </button>
 
                     <a class="navbar-brand"
                        href="index.html"
                        style="color: #14A085;">
+
                         <img src="img/logo.png"
                              width="350"
                              height="65"
                              alt="logo"/>
+
                     </a>
 
                 </div>
+
 
                 <div class="navbar-collapse collapse" id="navbar">
 
@@ -110,105 +378,127 @@
                 </div>
 
             </div>
+
         </div>
-	</header>
-	<!-- end header -->
+
+    </header>
 
 
-	<!-- Slider -->
-	<section id="featured">
+    <!-- ================= SLIDER ================= -->
+
+    <section id="featured">
 
         <div id="main-slider" class="flexslider">
 
             <ul class="slides">
 
                 <li>
+
                     <img src="img/slides/1.jpg" alt="" />
 
                     <div class="flex-caption">
 
                         <div class="item_introtext">
+
                             <strong>Machine Learning Group</strong>
                             <p>IIT Palakkad</p>
+
                         </div>
 
                     </div>
+
                 </li>
 
 
                 <li>
+
                     <img src="img/slides/3.jpg" alt="" />
 
                     <div class="flex-caption">
 
                         <div class="item_introtext">
+
                             <strong>Machine Learning Group</strong>
                             <p>IIT Palakkad</p>
+
                         </div>
 
                     </div>
+
                 </li>
 
 
                 <li>
+
                     <img src="img/slides/4.png" alt="" />
 
                     <div class="flex-caption">
 
                         <div class="item_introtext">
+
                             <strong>Machine Learning Group</strong>
                             <p>IIT Palakkad</p>
+
                         </div>
 
                     </div>
+
                 </li>
 
 
                 <li>
+
                     <img src="img/slides/5.jpg" alt="" />
 
                     <div class="flex-caption">
 
                         <div class="item_introtext">
+
                             <strong>Machine Learning Group</strong>
                             <p>IIT Palakkad</p>
+
                         </div>
 
                     </div>
+
                 </li>
 
 
                 <li>
+
                     <img src="img/slides/6.jpg" alt="" />
 
                     <div class="flex-caption">
 
                         <div class="item_introtext">
+
                             <strong>Machine Learning Group</strong>
                             <p>IIT Palakkad</p>
+
                         </div>
 
                     </div>
+
                 </li>
 
             </ul>
 
         </div>
 
-	</section>
-	<!-- end slider -->
+    </section>
 
 
-	<!-- MLG Introduction -->
-	<section class="callaction">
+    <!-- ================= MLG INTRODUCTION ================= -->
 
-	    <div class="container">
+    <section class="callaction">
 
-		    <div class="row">
+        <div class="container">
 
-			    <div class="col-lg-12">
+            <div class="row">
 
-				    <div class="aligncenter">
+                <div class="col-lg-12">
+
+                    <div class="aligncenter">
 
                         <h1 class="aligncenter">
                             MLG@IITPKD
@@ -234,107 +524,439 @@
 
                     </div>
 
-			    </div>
+                </div>
 
-		    </div>
+            </div>
 
-	    </div>
+        </div>
 
-	</section>
+    </section>
 
+
+    <!-- ================= NEWSFEED ================= -->
+
+    <section class="news-section">
+
+        <div class="container">
+
+            <div class="news-heading">
+
+                <h2>Latest News &amp; Updates</h2>
+
+                <p>
+                    Recent activities and achievements from MLG@IITPKD
+                </p>
+
+            </div>
+
+
+            <div class="news-carousel">
+
+                <!-- Previous button -->
+
+                <button class="news-arrow news-prev"
+                        type="button"
+                        aria-label="Previous news">
+
+                    <i class="fa fa-angle-left"></i>
+
+                </button>
+
+
+                <!-- News slides -->
+
+                <div class="news-slides">
+
+
+                    <!-- NEWS 1 -->
+
+                    <article class="news-slide active">
+
+                        <div class="news-image">
+
+                            <img src="img/newsfeed/Vishnu_cvml.jpeg"
+                                 alt="MLG news">
+
+                        </div>
+
+
+                        <div class="news-content">
+
+                            <div class="news-date">
+                                05 OCT 2026
+                            </div>
+
+                            <h3>
+                                New research from MLG@IITPKD
+                            </h3>
+
+                            <p>
+                                Our researchers continue to work on new
+                                directions in machine learning, artificial
+                                intelligence and data science.
+                            </p>
+
+                            <a href="#" class="news-link">
+                                Read more →
+                            </a>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- NEWS 2 -->
+
+                    <article class="news-slide">
+
+                        <div class="news-image">
+
+                            <img src="img/newsfeed/Thomas_ecml.jpg"
+                                 alt="MLG event">
+
+                        </div>
+
+
+                        <div class="news-content">
+
+                            <div class="news-date">
+                                28 SEP 2026
+                            </div>
+
+                            <h3>
+                                Florence Nightingale Data Science Talk Series
+                            </h3>
+
+                            <p>
+                                The Machine Learning Group continues its
+                                research talk series featuring researchers
+                                working across data science and machine
+                                learning.
+                            </p>
+
+                            <a href="#" class="news-link">
+                                Event details →
+                            </a>
+
+                        </div>
+
+                    </article>
+
+
+                </div>
+
+
+                <!-- Next button -->
+
+                <button class="news-arrow news-next"
+                        type="button"
+                        aria-label="Next news">
+
+                    <i class="fa fa-angle-right"></i>
+
+                </button>
+
+            </div>
+
+
+            <!-- News dots -->
+
+            <div class="news-dots">
+
+                <button class="news-dot active"
+                        type="button"
+                        aria-label="News 1">
+                </button>
+
+                <button class="news-dot"
+                        type="button"
+                        aria-label="News 2">
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+
+        <div class="container">
+
+            <div class="row">
+
+                <div class="col-lg-3">
+
+                    <div class="widget">
+
+                        <h5 class="widgetheading">
+                            Our Contact
+                        </h5>
+
+                        <address>
+
+                            <strong>MLG - IIT PKD</strong><br>
+
+                            Indian Institute Of Technology Palakkad<br>
+
+                            Kanjikode, Kerala 678623
+
+                        </address>
+
+                        <p>
+
+                            <i class="icon-phone"></i>
+                            <br>
+
+                            <i class="icon-envelope-alt"></i>
+                            mlgiitpkd@googlegroups.com
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Other footer sections remain commented out -->
+
+            </div>
+
+        </div>
+
+
+        <div id="sub-footer">
+
+            <div class="container">
+
+                <div class="row">
+
+                    <div class="col-lg-6">
+
+                        <div class="copyright">
+
+                            <p>
+
+                                <span>
+                                    &copy; Above Site All right reserved.
+                                    Template By
+                                </span>
+
+                                <a href="https://mlgiitpkd.github.io/"
+                                   target="_blank">
+                                    MLG IIT PKD
+                                </a>
+
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-lg-6">
+
+                        <ul class="social-network">
+
+                            <li>
+                                <a href="#"
+                                   data-placement="top"
+                                   title="Facebook">
+
+                                    <i class="fa fa-facebook"></i>
+
+                                </a>
+                            </li>
+
+
+                            <li>
+
+                                <a href="https://www.linkedin.com/company/74949009/"
+                                   data-placement="top"
+                                   title="Linkedin">
+
+                                    <i class="fa fa-linkedin"></i>
+
+                                </a>
+
+                            </li>
+
+                        </ul>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </footer>
 
 </div>
 
 
-</section>
-	<footer>
-	<div class="container">
-		<div class="row">
-			<div class="col-lg-3">
-				<div class="widget">
-					<h5 class="widgetheading">Our Contact</h5>
-					<address>
-					<strong>MLG - IIT PKD</strong><br>
-					Indian Institute Of Technology Palakkad<br>
-					Kanjikode, Kerala 678623</address>
-					<p>
-						<i class="icon-phone"></i>  <br>
-						<i class="icon-envelope-alt"></i> mlgiitpkd@googlegroups.com
-					</p>
-				</div>
-			</div>
-			<!-- <div class="col-lg-3">
-				<div class="widget">
-					<h5 class="widgetheading">Quick Links</h5>
-					<ul class="link-list">
-						<li><a href="#">Latest Events</a></li>
-						<li><a href="#">Terms and conditions</a></li>
-						<li><a href="#">Privacy policy</a></li>
-						<li><a href="#">Career</a></li>
-						<li><a href="#">Contact us</a></li>
-					</ul>
-				</div>
-			</div>
-			<div class="col-lg-3">
-				<div class="widget">
-					<h5 class="widgetheading">Latest posts</h5>
-					<ul class="link-list">
-						<li><a href="#">Florence Nightingale Data Science Talk Series</a></li>
-						<li><a href="#">-Dr. CK Narayanan, Prof. IIT Palakkad</a></li>
-						<li><a href="#">Distributionally Robust Optimization in Social Networks</a></li>
-					</ul>
-				</div>
-			</div>
-			<div class="col-lg-3">
-				<div class="widget">
-					<h5 class="widgetheading">Recent News</h5>
-					<ul class="link-list">
-						<li><a href="#"> </a></li>
-						<li><a href="#"> </a></li>
-						<li><a href="#"> </a></li>
-					</ul>
-				</div>
-			</div> -->
-		</div>
-	</div>
-	<div id="sub-footer">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-6">
-					<div class="copyright">
-						<p>
-							<span>&copy; Above Site All right reserved. Template By </span><a href="https://mlgiitpkd.github.io/" target="_blank">MLG IIT PKD</a>
-						</p>
-					</div>
-				</div>
-				<div class="col-lg-6">
-					<ul class="social-network">
-						<li><a href="#" data-placement="top" title="Facebook"><i class="fa fa-facebook"></i></a></li>
-						<!-- <li><a href="#" data-placement="top" title="Twitter"><i class="fa fa-twitter"></i></a></li> -->
-						<li><a href="https://www.linkedin.com/company/74949009/" data-placement="top" title="Linkedin"><i class="fa fa-linkedin"></i></a></li>
-						<!-- <li><a href="#" data-placement="top" title="Pinterest"><i class="fa fa-pinterest"></i></a></li> -->
-						<!-- <li><a href="#" data-placement="top" title="Google plus"><i class="fa fa-google-plus"></i></a></li> -->
-					</ul>
-				</div>
-			</div>
-		</div>
-	</div>
-	</footer>
-</div>
-<a href="#" class="scrollup"><i class="fa fa-angle-up active"></i></a>
-<!-- javascript
-    ================================================== -->
-<!-- Placed at the end of the document so the pages load faster -->
+<!-- ================= SCROLL TO TOP ================= -->
+
+<a href="#" class="scrollup">
+    <i class="fa fa-angle-up active"></i>
+</a>
+
+
+<!-- ================= JAVASCRIPT ================= -->
+
 <script src="js/jquery.js"></script>
 <script src="js/jquery.easing.1.3.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script src="js/jquery.fancybox.pack.js"></script>
-<script src="js/jquery.fancybox-media.js"></script> 
+<script src="js/jquery.fancybox-media.js"></script>
 <script src="js/portfolio/jquery.quicksand.js"></script>
 <script src="js/portfolio/setting.js"></script>
 <script src="js/jquery.flexslider.js"></script>
 <script src="js/animate.js"></script>
 <script src="js/custom.js"></script>
 <script src="js/owl-carousel/owl.carousel.js"></script>
+
+
+<!-- ================= NEWS CAROUSEL SCRIPT ================= -->
+
+<script>
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const slides = document.querySelectorAll(".news-slide");
+    const dots = document.querySelectorAll(".news-dot");
+
+    const prevButton = document.querySelector(".news-prev");
+    const nextButton = document.querySelector(".news-next");
+
+    let currentSlide = 0;
+    let autoPlay;
+
+
+    function showSlide(index) {
+
+        if (index >= slides.length) {
+            index = 0;
+        }
+
+        if (index < 0) {
+            index = slides.length - 1;
+        }
+
+
+        slides.forEach(function (slide) {
+            slide.classList.remove("active");
+        });
+
+
+        dots.forEach(function (dot) {
+            dot.classList.remove("active");
+        });
+
+
+        slides[index].classList.add("active");
+        dots[index].classList.add("active");
+
+        currentSlide = index;
+
+    }
+
+
+    function nextSlide() {
+
+        showSlide(currentSlide + 1);
+
+    }
+
+
+    function previousSlide() {
+
+        showSlide(currentSlide - 1);
+
+    }
+
+
+    function startAutoPlay() {
+
+        autoPlay = setInterval(function () {
+
+            nextSlide();
+
+        }, 5000);
+
+    }
+
+
+    function stopAutoPlay() {
+
+        clearInterval(autoPlay);
+
+    }
+
+
+    nextButton.addEventListener("click", function () {
+
+        nextSlide();
+
+        stopAutoPlay();
+        startAutoPlay();
+
+    });
+
+
+    prevButton.addEventListener("click", function () {
+
+        previousSlide();
+
+        stopAutoPlay();
+        startAutoPlay();
+
+    });
+
+
+    dots.forEach(function (dot, index) {
+
+        dot.addEventListener("click", function () {
+
+            showSlide(index);
+
+            stopAutoPlay();
+            startAutoPlay();
+
+        });
+
+    });
+
+
+    const carousel = document.querySelector(".news-carousel");
+
+
+    carousel.addEventListener("mouseenter", function () {
+
+        stopAutoPlay();
+
+    });
+
+
+    carousel.addEventListener("mouseleave", function () {
+
+        startAutoPlay();
+
+    });
+
+
+    showSlide(0);
+
+    startAutoPlay();
+
+});
+
+</script>
+
+
 </body>
 </html>
