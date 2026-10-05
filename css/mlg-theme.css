@@ -204,7 +204,7 @@ header .navbar-nav > li.active > a {
 .btn-color:hover { background: var(--accent-dim) !important; transform: translateY(-2px); }
 
 /* ─── PROJECT CARDS (.portfolio-item on index + research) ─── */
-.about .portfolio-item,
+/* .about .portfolio-item,
 #content .portfolio-item {
     background: #fff;
     border: 1px solid var(--rule);
@@ -252,7 +252,164 @@ header .navbar-nav > li.active > a {
     font-size: 12.5px;
 }
 .about .portfolio-item p a,
-#content .portfolio-item p a { color: var(--accent) !important; }
+#content .portfolio-item p a { color: var(--accent) !important; } */
+
+/* ─── RESEARCH PROJECT LIST ───────────────────────── */
+
+.research-list {
+    width: 100%;
+    margin-top: 10px;
+}
+
+.research-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 38px;
+
+    padding: 38px 0;
+
+    border-bottom: 1px solid var(--rule);
+}
+
+.research-item:first-child {
+    padding-top: 10px;
+}
+
+.research-item:last-child {
+    border-bottom: none;
+}
+
+
+/* Project image */
+
+.research-item-image {
+    flex: 0 0 280px;
+    width: 280px;
+}
+
+.research-item-image img {
+    display: block;
+
+    width: 280px;
+    height: 190px;
+
+    object-fit: cover;
+
+    border-radius: 6px;
+}
+
+
+/* Project content */
+
+.research-item-content {
+    flex: 1;
+    min-width: 0;
+}
+
+.research-item-content h3 {
+    font-family: 'DM Serif Display', serif !important;
+
+    font-size: 24px !important;
+    line-height: 1.3;
+
+    color: var(--ink) !important;
+
+    margin: 0 0 12px;
+}
+
+.research-item-content p {
+    color: var(--ink-soft) !important;
+
+    font-size: 14px;
+    line-height: 1.75;
+
+    margin: 0 0 16px;
+}
+
+
+/* Researcher information */
+
+.research-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 18px;
+
+    margin-top: 12px;
+
+    color: var(--ink-muted);
+
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+
+    letter-spacing: .02em;
+}
+
+.research-meta span:first-child {
+    color: var(--accent-dim);
+    font-weight: 500;
+}
+
+
+/* Paper / GitHub link */
+
+.research-link {
+    display: inline-block;
+
+    margin-top: 16px;
+
+    color: var(--accent) !important;
+
+    font-size: 13px;
+    font-weight: 600;
+
+    text-decoration: none;
+}
+
+.research-link:hover {
+    color: var(--accent-dim) !important;
+}
+
+
+/* ─── MOBILE ───────────────────────────────────────── */
+
+@media (max-width: 767px) {
+
+    .research-item {
+        display: block;
+
+        padding: 30px 0;
+    }
+
+    .research-item-image {
+        width: 100%;
+        margin-bottom: 22px;
+    }
+
+    .research-item-image img {
+        width: 100%;
+        height: auto;
+        max-height: 280px;
+        object-fit: cover;
+    }
+
+    .research-item-content h3 {
+        font-size: 21px !important;
+    }
+
+    .research-item-content p {
+        font-size: 14px;
+        line-height: 1.7;
+    }
+
+    .research-meta {
+        display: block;
+    }
+
+    .research-meta span {
+        display: block;
+        margin-bottom: 5px;
+    }
+}
 
 /* ─── PEOPLE CARDS (.team-wrapper) ──────────────── */
 .team-wrapper {
