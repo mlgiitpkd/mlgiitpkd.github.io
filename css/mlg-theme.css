@@ -901,3 +901,22 @@ footer a:hover { color: var(--accent) !important; }
     }
 
 }
+
+/* Project keyword badges */
+.project-keywords {
+    display: inline-block;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    color: #555;
+    margin-left: 10px;
+    vertical-align: middle;
+    line-height: 2;
+    letter-spacing: 0.2px;
+}
+
+.project-keywords {
+    background: #f0f2f5;
+    padding: 3px 8px;
+    border-radius: 4px;
+}
